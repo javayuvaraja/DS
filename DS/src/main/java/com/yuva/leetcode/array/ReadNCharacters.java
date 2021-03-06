@@ -1,7 +1,5 @@
 package com.yuva.leetcode.array;
 
-import java.util.stream.IntStream;
-
 /**
  * 
  * Description
@@ -15,23 +13,21 @@ import java.util.stream.IntStream;
 public class ReadNCharacters {
 
 	public int read(char[] buff, int n) {
-		int bufferSize =4;
+		int bufferSize = 4;
 		int totalBytesRead = 0;
-		char []charBuff = new char[bufferSize];
+		char[] tempBuff = new char[bufferSize];
 		boolean isFileCompleted = false;
-		while (totalBytesRead < n && !isFileCompleted) {
-			int count = read4(charBuff);
-			isFileCompleted= count < bufferSize;
-			count = Math.min(count, totalBytesRead-n);
-			
-			IntStream.range(0, count).forEach(System.out.println(index));
+		
+		while (!isFileCompleted && totalBytesRead < n) {
+			int charCount = read4(tempBuff);
+			isFileCompleted = charCount < bufferSize;
+			charCount = Math.min(charCount, n-totalBytesRead); // read till user asked
+			for (int i=0; i < charCount; i++) {
+				buff[totalBytesRead++] = tempBuff[i]; 
+			}
 		}
 		return totalBytesRead;
 		
-	}
-	
-	public static void main(String[] args) {
-		IntStream.range(0, 5).forEach(index-> System.out.println(index));
 	}
 	
 	private int read4(char[] charBuff) {

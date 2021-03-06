@@ -2,6 +2,9 @@ package com.yuva.leetcode.tree;
 
 public class TreeNode {
 	int val;
+	TreeNode left;
+	TreeNode right;
+	TreeNode(int x) { val = x; }
 	public int getVal() {
 		return val;
 	}
@@ -20,7 +23,4 @@ public class TreeNode {
 	public void setRight(TreeNode right) {
 		this.right = right;
 	}
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x) { val = x; }
 }
