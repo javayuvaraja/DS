@@ -55,4 +55,12 @@ public class ConnectedComponent {
 		return vertice;
 	}
 	
+	public static void main(String[] args) {
+		int edges[][]= {{0, 1}, {1, 2}, {2, 3}, {3, 4}};
+		int n =5;
+		ConnectedComponent connectedComponent = new ConnectedComponent();
+		int count = connectedComponent.countComponents(n, edges);
+		System.out.println(count);
+	}
+	
 }
