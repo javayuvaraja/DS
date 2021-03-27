@@ -10,12 +10,12 @@ import java.util.Map;
 	
 	Input: "eceba"
 	Output: 3
-	Explanation: tis "ece" which its length is 3.
-	Example 2:
+	Explanation: "ece" which its length is 3.
 	
+	Example 2:
 	Input: "ccaabbb"
 	Output: 5
-	Explanation: tis "aabbb" which its length is 5.
+	Explanation: "aabbb" which its length is 5.
 
  * @author Yuvaraja Kanagarajan
  *
@@ -23,7 +23,6 @@ import java.util.Map;
 
 public class LongestSubstringAtmost2Char {
 
-	
 	public static void main(String[] args) {
 		String str = "ccaabbb";
 		System.out.println(longestSubString(str));
@@ -40,6 +39,7 @@ public class LongestSubstringAtmost2Char {
 		int startIndex = 0;
 		int maxLength = 0;
 		for (int i=0; i < charArr.length; i++) {
+			
 			// if char contains then update the maxlength
 			if (charMap.containsKey(charArr[i])) {
 				maxLength = Math.max(maxLength, i-startIndex+1);				
@@ -49,7 +49,7 @@ public class LongestSubstringAtmost2Char {
 				if (charMap.size()>1) {
 					int temp = startIndex;
 					startIndex = charMap.get(charArr[temp]) + 1;
-					charMap.remove(charMap.remove(charArr[temp]));
+					charMap.remove(charArr[temp]);
 				} 
 			}
 			charMap.put(charArr[i], i);

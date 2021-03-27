@@ -40,7 +40,7 @@ public class MissingRangeII {
 			return;
 		} else if (low+1 == high){ // {0,1} 
 			return;
-		} else if (low+1 == high-1) { //{1, 3}  missing only one element
+		} else if (low+1 == high-1) { //{1, 3}    missing only one element
 			result.add(String.valueOf(low+1));
 		} else {  // missing many (range)
 			String range = String.format("%d->%d", low+1,high-1);
