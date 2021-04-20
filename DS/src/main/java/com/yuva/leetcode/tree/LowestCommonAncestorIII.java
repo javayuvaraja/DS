@@ -12,7 +12,8 @@ Assumptions
 
 There is no parent pointer for the nodes in the binary tree
 
-The given two nodes arenotguaranteed to be in the binary tree
+The given two nodes are not guaranteed to be in the binary tree
+
  * @author Yuvaraja Kanagarajan
  *
  */

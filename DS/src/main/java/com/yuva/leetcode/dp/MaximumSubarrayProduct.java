@@ -31,6 +31,7 @@ public class MaximumSubarrayProduct {
 		int currMin = max;
 
 		for (int i = 1; i < nums.length; i++) {
+			// If current number is negative then swap the min and max
 			if (nums[i] < 0) {
 				int temp = currMax;
 				currMax = currMin;

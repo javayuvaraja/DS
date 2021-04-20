@@ -1,5 +1,8 @@
 package com.yuva.leetcode.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 116. Populating Next Right Pointers in Each Node
  * 
@@ -56,6 +59,40 @@ public class PopulateNextPointerI {
 		}
 		connect(root,null);
 	}
+	
+	public TreeLinkNode connect(TreeLinkNode root) {
+        if (root == null) {
+            return root;
+        }
+        Queue<TreeLinkNode> queue = new LinkedList<>();
+		queue.add(root);
+		queue.add(null);
+		TreeLinkNode prevNode = null;
+		while (!queue.isEmpty()) {
+			TreeLinkNode currNode = queue.poll();
+			if (currNode==null) {
+				if (!queue.isEmpty()) {
+					queue.add(null);
+					prevNode = null;
+					continue;
+				} else {
+					break;
+				}
+			} 
+			if (currNode.left!=null) {
+				queue.add(currNode.left);
+			}
+			if (currNode.right!=null) {
+				queue.add(currNode.right);
+			}
+			if (prevNode!=null) {
+				prevNode.next = currNode;
+			}
+			prevNode = currNode;
+		}
+		return root;
+    }
+	
 	
 	/**
 	 * 

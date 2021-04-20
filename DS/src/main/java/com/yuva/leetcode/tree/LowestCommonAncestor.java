@@ -7,10 +7,7 @@ public class LowestCommonAncestor {
 	 }
 	 
 	 private TreeNode lca (TreeNode root,TreeNode node1, TreeNode node2) {
-		 if (root ==null) {
-			 return null;
-		 }
-		 if (root.val == node1.val || root.val==node2.val) {
+		 if (root ==null || root.val == node1.val || root.val==node2.val) {
 			 return root;
 		 }
 		 

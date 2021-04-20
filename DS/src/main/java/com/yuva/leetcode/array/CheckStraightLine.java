@@ -35,11 +35,14 @@ public class CheckStraightLine {
         int[] point1 = arr[0];
         int[] point2 = arr[1];
         
+        int x = 0;
+        int y = 1;
+        
         for(int i = 2; i < arr.length; i++) {
-            int[] curr = arr[i];
+            int[] point3 = arr[i];
             
-            if((curr[0] - point1[0]) * (point2[1] - point1[1]) != 
-               (curr[1] - point1[1]) * (point2[0] - point1[0])) {
+            if((point3[x] - point1[x]) * (point2[y] - point1[y]) != 
+               (point3[y] - point1[y]) * (point2[x] - point1[x])) {
             	return false;
             }
         }

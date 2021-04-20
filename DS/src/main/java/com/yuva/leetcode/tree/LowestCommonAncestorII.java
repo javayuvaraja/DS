@@ -91,17 +91,6 @@ class ParentTreeNode {
 	ParentTreeNode left;
 	ParentTreeNode right;
 	int val;
-	/*
-	 * public ParentTreeNode getParent() { return parent; } public void
-	 * setParent(ParentTreeNode parent) { this.parent = parent; } public
-	 * ParentTreeNode getLeft() { return left; } public void setLeft(ParentTreeNode
-	 * left) { this.left = left; } public ParentTreeNode getRight() { return right;
-	 * } public void setRight(ParentTreeNode right) { this.right = right; } public
-	 * int getVal() { return val; } public void setVal(int val) { this.val = val; }
-	 */
-	
-	
-		
 }
 
 

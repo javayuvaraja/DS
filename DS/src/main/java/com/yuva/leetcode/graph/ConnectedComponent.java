@@ -36,18 +36,18 @@ public class ConnectedComponent {
 			int source = edges[i][0];
 			int dest = edges[i][1];
 			
-			int sourceRoot = getRoot(source, root); 
-			int destRoot = getRoot(dest, root);
+			int sourceParent = getParent(source, root); 
+			int destParent = getParent(dest, root);
 			
-			if (sourceRoot!=destRoot) {
+			if (sourceParent!=destParent) {
 				count--;
-				root[sourceRoot] =  destRoot;
+				root[sourceParent] =  destParent;
 			}
 		}
 		return count;
  	}
 	
-	public int getRoot (int vertice, int []root) {
+	public int getParent (int vertice, int []root) {
 		while (root[vertice] != vertice) {
 			root[vertice] = root[root[vertice]];
 			vertice = root[vertice];
@@ -56,7 +56,7 @@ public class ConnectedComponent {
 	}
 	
 	public static void main(String[] args) {
-		int edges[][]= {{0, 1}, {1, 2}, {2, 3}, {3, 4}};
+		int edges[][]= {{0, 1}, {1, 2},  {3, 4}};
 		int n =5;
 		ConnectedComponent connectedComponent = new ConnectedComponent();
 		int count = connectedComponent.countComponents(n, edges);

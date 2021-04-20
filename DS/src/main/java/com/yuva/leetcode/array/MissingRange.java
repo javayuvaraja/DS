@@ -42,6 +42,7 @@ public class MissingRange {
 			expecting = nums[i]+1;			
 		}
 		
+		// upper boundary
 		if(expecting < upper) {
 			result.add(createRange(expecting, upper));
 		}

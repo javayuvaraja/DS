@@ -1,6 +1,7 @@
 package com.yuva.leetcode.graph;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -63,4 +64,27 @@ public class CourseSchedule {
 		
 		return completedCourseCount == numCourses;
 	}
+	
+	 public boolean canFinish1(int numCourses, int[][] prerequisites) {
+	        List<Integer>[] neighbours = new LinkedList[numCourses];
+	        Queue<Integer> queue = new LinkedList<>();
+	        int[] indegree = new int[numCourses];
+	        int count = 0;
+	        for (int i = 0; i < numCourses; i++) {
+	        	neighbours[i] = new LinkedList<>();
+	        }
+	        for (int[] pair : prerequisites) {
+	            neighbours[pair[1]].add(pair[0]);
+	            indegree[pair[0]]++;
+	        }
+	        for (int i = 0; i < indegree.length; i++)
+	            if (indegree[i] == 0) queue.offer(i);
+	        while (!queue.isEmpty()) {
+	            int course = queue.poll();
+	            count++;
+	            for (int adj : neighbours[course])
+	                if (--indegree[adj] == 0) queue.offer(adj);
+	        }
+	        return count == numCourses;
+	    }
 }

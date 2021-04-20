@@ -17,9 +17,9 @@ public class VerifyBSTPreorderSequence {
 			if (num < currMin) { // right subtree has the min value than the root
 				return false;
 			}
-			// if the current value is greater than the top of the stack, then this root 
-			// will be in right subtree. assign the top value as the root for checking the 
-			// right subtree node shoud be greater than the root (currMin)
+			// if the current value is greater than the top of the stack, 
+			//then this root will be in right subtree. assign the top value as the root 
+			//for checking the right subtree node shoud be greater than the root (currMin)
 			while (!stack.isEmpty() && num > stack.peek()) { 
 				currMin = stack.pop();				
 			}
