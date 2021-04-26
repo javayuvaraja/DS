@@ -16,6 +16,10 @@ package com.yuva.leetcode.dp;
  * 
  * @author Yuvaraja Kanagarajan
  *
+ *Input: [[17,2,17],[16,16,5],[14,3,19]]
+Output: 10
+Explanation: Paint house 0 into blue, paint house 1 into green, paint house 2 into blue.
+             Minimum cost: 2 + 5 + 3 = 10.
  *
  *  Logic : The cost to paint the next house red is the minimum total cost to paint the previous
  *   house blue or green plus the cost to paint the current house red.

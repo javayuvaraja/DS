@@ -3,7 +3,10 @@ package com.yuva.leetcode.dfsbfs;
 /**
  * Leetcode 490
  * 
- * There is a ball in a maze with empty spaces and walls. The ball can go through empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
+ * There is a ball in a maze with empty spaces and walls. 
+ * The ball can go through empty spaces by rolling up, down, left or right, 
+ * but it won't stop rolling until hitting a wall. 
+ * When the ball stops, it could choose the next direction.
 
 Given the ball's start position, the destination and the maze, determine whether the ball could stop at the destination.
 
@@ -70,7 +73,8 @@ public class Maze {
 	
 	private static boolean dfs (int [][]maze, int currRow, int currCol, int dest[], boolean visited[][]) {
 		//checking reached the destination
-		if (currRow == dest[0] && currCol == dest[1]) {
+		if (currRow == dest[0] && 
+			currCol == dest[1]) {
 			return true;
 		}
 		// checking whether already visited

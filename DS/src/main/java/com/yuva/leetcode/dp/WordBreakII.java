@@ -47,7 +47,7 @@ public class WordBreakII {
 	        return map.get(s);
 	    }
 	        
-	    LinkedList<String>res = new LinkedList<String>();     
+	    LinkedList<String> res = new LinkedList<String>();     
 	    if (s.length() == 0) {
 	        res.add("");
 	        return res;

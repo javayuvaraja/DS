@@ -3,9 +3,11 @@ package com.yuva.leetcode.general;
 import java.util.List;
 
 /**
- * A binary matrix means that all elements are 0 or 1. For each individual row of the matrix, this row is sorted in non-decreasing order.
-	Given a row-sorted binary matrix binaryMatrix, return leftmost column index(0-indexed) with at least a 1 in it. 
-	If such index doesn't exist, return -1.
+ A binary matrix means that all elements are 0 or 1. For each individual row of the matrix, 
+ this row is sorted in non-decreasing order.
+ 
+ Given a row-sorted binary matrix binaryMatrix, return leftmost column index(0-indexed) with at least a 1 in it. 
+ If such index doesn't exist, return -1.
    
   Constraints :
   ---------------
@@ -44,16 +46,19 @@ public class LeftMostColumnAtleastOne {
 	 * @param binaryMatrix
 	 * @return
 	 */
+	
 	public int leftMostColumnWithOne1(BinaryMatrix binaryMatrix) {
         List<Integer> dimension = binaryMatrix.dimensions();
         int rowLen = dimension.get(0);
         int colLen = dimension.get(1);
         int min = Integer.MAX_VALUE;
         for (int row = 0; row < rowLen; row++) {
-            min = Math.min(min, binarySearch(binaryMatrix, row, Math.min(colLen, min)));
+            min = Math.min(min, 
+            		binarySearch(binaryMatrix, row, Math.min(colLen, min)));
         }
         return min == Integer.MAX_VALUE ? -1 : min;
     }
+	
     private int binarySearch(BinaryMatrix matrix, int row, int col) {
         if (matrix.get(row, col - 1) == 0) return Integer.MAX_VALUE;
         if (matrix.get(row, 0) == 1) return 0;

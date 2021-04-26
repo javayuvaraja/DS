@@ -56,7 +56,7 @@ public class MissingRange {
 	
 	public static void main(String[] args) {
 		MissingRange obj = new MissingRange();
-		int nums[] = {0, 1, 3, 50, 75};
+ 		int nums[] = {0, 1, 3, 50, 75};
 		System.out.println(obj.findMissingRanges(nums, 0, 90));
 	}
 }

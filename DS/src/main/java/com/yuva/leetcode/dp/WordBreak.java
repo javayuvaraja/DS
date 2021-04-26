@@ -62,7 +62,7 @@ public class WordBreak {
 		}
 		
 		return result[0][strLength-1];
-    }
+     }
 	
 	
 	Map<String, Boolean> stringMap = new HashMap<>();

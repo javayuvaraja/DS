@@ -56,7 +56,7 @@ public class WordSearchII {
 	}
 
 	public TrieNode buildTrie(String[] words) {
-	    TrieNode root = new TrieNode();
+		TrieNode root = new TrieNode();
 	    for (String w : words) {
 	        TrieNode p = root;
 	        for (char c : w.toCharArray()) {

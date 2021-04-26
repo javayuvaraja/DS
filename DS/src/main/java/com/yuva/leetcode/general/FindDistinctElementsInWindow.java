@@ -5,6 +5,8 @@ import java.util.Map;
 
 /**
  * Print distinct elements in the window
+ * Given an array of size n and an integer k, return the count of distinct numbers in all windows of size k.
+
  * @author Yuvaraja Kanagarajan
  *
  */
@@ -12,6 +14,7 @@ public class FindDistinctElementsInWindow {
 
 	public static void printDistinctElementsCount(int arr[], int k) {
 		Map <Integer, Integer> countMap = new HashMap<>();
+		// First fill K items to the map
 		for (int i= 0; i < k ; i++ ) {
 			countMap.put(arr[i], countMap.getOrDefault(arr[i], 0)+1);
 		}
@@ -22,6 +25,7 @@ public class FindDistinctElementsInWindow {
 			int endIndex = start+k;
 			int lastIndex = endIndex-k;
 			countMap.put(arr[lastIndex], countMap.get(arr[lastIndex])-1);
+			// remove the element from the map if occurence is zero after removal
 			if(countMap.get(arr[lastIndex])==0) {
 				countMap.remove(arr[lastIndex]);
 			}

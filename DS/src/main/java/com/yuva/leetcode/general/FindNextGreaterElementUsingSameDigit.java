@@ -16,6 +16,14 @@ import java.util.Arrays;
  *
  */
 public class FindNextGreaterElementUsingSameDigit {
+	
+	/**
+	 * Find the swap Index. 
+	 * Find the next greater element than the swap index
+	 * Swap the value after that sort the remaining values after the swapindex
+	 * @param n
+	 * @return
+	 */
 	public int nextGreaterElement(int n) {
 		String str = String.valueOf(n);
 		char charArr[]= str.toCharArray();
@@ -42,9 +50,7 @@ public class FindNextGreaterElementUsingSameDigit {
 		if (Long.parseLong(resultStr) > Integer.MAX_VALUE) {
 			return -1;
 		}
-		return Integer.parseInt(resultStr);
-
-		
+		return Integer.parseInt(resultStr);		
 	}
 	
 	private int findNextGreaterElementFromRight(char []charArr, int swapIndex) {

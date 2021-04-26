@@ -19,6 +19,12 @@ public class MaxPointsOnLine {
 	
 	 static int X = 0;
 	 static int Y= 1;
+	 
+	 /**
+	  * Compare one point with all other points, check max number of points in the line
+	  * @param points
+	  * @return
+	  */
 	 public int maxPoints(int[][] points) {
 		 
 		 int length = points.length;
@@ -69,11 +75,11 @@ public class MaxPointsOnLine {
 	 }
 	 
 	 private double getSlope (int point1[], int point2[]) {
-		 
-		 
+		 // same x axis
 		 if (point1[X]==point2[X]) {
 			 return Integer.MAX_VALUE;
 		 } 
+		 // same y axis
 		 if (point1[Y]==point2[Y]) {
 			 return 0;
 		 }

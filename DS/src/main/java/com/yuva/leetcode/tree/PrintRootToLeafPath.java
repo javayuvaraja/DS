@@ -3,6 +3,13 @@ package com.yuva.leetcode.tree;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This program can be used for root to leaf path or
+ * leaf to root path.
+ * If leaf to root then we have to iterate in the reverse order.
+ * @author Yuvaraja Kanagarajan
+ *
+ */
 public class PrintRootToLeafPath {
 
 	public static List<List<Integer>> printRootToLeaf(TreeNode node) {

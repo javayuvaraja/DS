@@ -1,8 +1,12 @@
 package com.yuva.leetcode.general;
 
+/**
+ * Divide the number without using division and subtraction
+ * @author Yuvaraja Kanagarajan
+ *
+ */
 public class DivideNumber {
 
-	
 	public int divide (int dividend, int divisor ) {
 		if (dividend < divisor) {
 			return 0;
