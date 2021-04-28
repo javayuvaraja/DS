@@ -31,7 +31,7 @@ public class TaskSchedulerII {
 	 *  (5-1) * (3+1) +1 => 4*4+1 =>17
 	 *  
 	 * @param tasks
-	 * @param n
+	 * @para m n
 	 * @return
 	 */
 	public int leastInterval(char[] tasks, int n) {

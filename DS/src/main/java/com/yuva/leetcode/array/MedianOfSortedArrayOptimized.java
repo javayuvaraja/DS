@@ -6,7 +6,8 @@ public class MedianOfSortedArrayOptimized {
 	 *   
 The idea is to merge both the arrays and return the middle element [or average of middle elements if m+n is even].
 BUT, we dont have to store the merged array.
-We just need the pointers to both the arrays, at the instant we merge the arrays till median index. (thus using O(1) space)
+We just need the pointers to both the arrays, 
+at the instant we merge the arrays till median index. (thus using O(1) space)
 
 We use the "Merge two sorted arrays algorithm" to merge both the arrays untill (nums1Ptr + nums2Ptr) <= ((m+n)/2). As (m+n)/2 will be 
 the median index in a merged array.. Then return the median element. 

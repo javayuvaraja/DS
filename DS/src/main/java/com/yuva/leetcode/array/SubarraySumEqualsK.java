@@ -1,7 +1,9 @@
-package com.yuva.leetcode.array;
+ package com.yuva.leetcode.array;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
 
@@ -20,10 +22,14 @@ Output: 2
  */
 public class SubarraySumEqualsK {
 
+	/**
+	 * Store the preSum with no of occurence of that sum.
+	 * Check curr-k exists in the map, if it is there then increment the result.  
+	 */
 	public int subarraySum(int[] nums, int k) {
         int sum = 0, result = 0;
         Map<Integer, Integer> preSum = new HashMap<>();
-        preSum.put(0, 1);
+        preSum.put(0, 1);  // for presum ==k case, 
         
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
@@ -35,10 +41,10 @@ public class SubarraySumEqualsK {
         
         return result;
     }
-	 
+	
 	 public static void main(String[] args) {
-		int arr[] = {1,1,1};
-		int k = 2;
+		int arr[] = {3,4,7,2,-3,1,4,2};
+		int k = 7;
 		System.out.println(new SubarraySumEqualsK().subarraySum(arr, k));
 	}
 }

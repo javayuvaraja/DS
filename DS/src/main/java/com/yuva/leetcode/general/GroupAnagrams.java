@@ -61,7 +61,7 @@ public class GroupAnagrams {
 	
 	public static void main(String[] args) {
 		GroupAnagrams obj = new GroupAnagrams();
-		String strs[] = {"eaat","tea","tan","ate","nat","bat"};
+		String strs[] = {"eat","tea","tan","ate","nat","bat"};
 		obj.groupAnagrams1(strs).stream().forEach(e-> System.out.println(e));
 	}
 }

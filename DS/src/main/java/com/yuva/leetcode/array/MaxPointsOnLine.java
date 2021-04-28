@@ -61,7 +61,6 @@ public class MaxPointsOnLine {
 			 }
 			 pointsSet.add(pointStr);
 			 // check whether slope count is more or same point count
-			 
 			 max = Math.max(max, currMax+sameCount);
 			 
 		 }

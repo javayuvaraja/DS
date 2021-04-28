@@ -1,0 +1,125 @@
+package com.yuva.leetcode.general;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.*;
+
+public class MergeIntervalWithPrice {
+	private class Interval {
+		int startTime;
+		int endTime;
+		int price;
+
+		Interval(int startTime, int endTime, int price) {
+			this.startTime = startTime;
+			this.endTime = endTime;
+			this.price = price;
+		}
+
+		public int getStartTime() {
+			return this.startTime;
+		}
+
+		public int getEndTime() {
+			return this.endTime;
+		}
+
+		public int getPrice() {
+			return this.price;
+		}
+
+		public String toString() {
+			return this.startTime + " ," + this.endTime + ", " + this.price;
+		}
+
+		public int hashCode() {
+			return 13 * this.startTime * this.endTime * this.price;
+		}
+
+		public boolean equals(Object other1) {
+			if (!(other1 instanceof Interval)) {
+				return false;
+			}
+			Interval other = (Interval) other1;
+			return this.startTime == other.startTime && this.endTime == other.endTime && this.price == other.price;
+		}
+	}
+
+	private List<Interval> getLowestPrices(List<Interval> vendors) {
+		List<Interval> result = new ArrayList<>();
+		if (vendors == null || vendors.size() == 0) {
+			return result;
+		}
+
+		// Have to sort by start time, if start time is same then sort by price
+		// Collections.sort(vendors, (a, b) -> a.startTime - b.startTime);
+		Collections.sort(vendors, Comparator.comparing(Interval::getStartTime).thenComparing(Interval::getPrice));
+
+		Interval prev = vendors.get(0);
+		Interval curr = null;
+		System.out.println("Prev : " + prev.startTime + " " + prev.endTime + " " + prev.price);
+		for (int i = 1; i < vendors.size(); i++) {
+			curr = vendors.get(i);
+			// no overlap
+			if (curr.startTime > prev.endTime) {
+				result.add(prev);
+				prev = curr;
+			} else { // overlap
+				if (prev.startTime <= curr.startTime && 
+						prev.endTime >= curr.endTime) { // completely overlap
+					if (prev.price <= curr.price) { 
+						continue;
+					} else {
+						result.add(new Interval(prev.startTime, curr.startTime, prev.price));
+						result.add(curr);
+						prev.startTime = curr.endTime;						
+					}
+				} else {// partially overlap
+					if (prev.price > curr.price) {
+						prev.endTime  = curr.startTime;
+						result.add(prev);
+						prev =curr;
+					}
+				}
+			}			
+		}
+		result.add(prev);
+		System.out.println("Result : " + result);
+		return result;
+	}
+
+	/**
+	 * Returns true if the tests pass. Otherwise, false.
+	 */
+	private boolean doTestsPass() {
+		// Interval[] sampleInput = { new Interval( 1, 5, 20 ), new Interval( 3, 8, 15
+		// ), new Interval( 7, 10, 8 ) };
+		// Interval[] expectedOutput = { new Interval( 1, 3, 20 ), new Interval( 3, 7,
+		// 15 ), new Interval( 7, 10, 8 ) };
+
+		Interval[] sampleInput = { new Interval(1, 20, 13), new Interval(7, 10, 8), new Interval(3, 8, 15),
+				new Interval(1, 5, 20), new Interval(25, 30, 12) };
+		Interval[] expectedOutput = { new Interval(1, 7, 13), new Interval(7, 10, 8), new Interval(10, 20, 13),  new Interval(25, 30, 12) };
+
+		// * Input : ( 1, 20 13 ), ( 7, 10, 8 ), ( 3, 8, 15 ), ( 1, 5, 20 )
+		// * Output: ( 1, 7, 13 ), ( 7, 10, 8 ), ( 10, 20, 13 )
+
+		List<Interval> inputList = new ArrayList<>(Arrays.asList(sampleInput));
+		List<Interval> expectedList = new ArrayList<>(Arrays.asList(expectedOutput));
+
+		return expectedList.equals(getLowestPrices(inputList));
+	}
+
+	/**
+	 * Execution entry point.
+	 */
+	public static void main(String[] args) {
+		MergeIntervalWithPrice solution = new MergeIntervalWithPrice();
+		if (solution.doTestsPass()) {
+			System.out.println("All tests passed");
+		} else {
+			System.out.println("Tests failed");
+		}
+	}
+}

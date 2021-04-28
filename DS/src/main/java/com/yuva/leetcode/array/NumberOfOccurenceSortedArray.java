@@ -10,7 +10,7 @@ package com.yuva.leetcode.array;
 public class NumberOfOccurenceSortedArray {
 
 
-	static int count(int arr[], int target) {
+	static int count(int arr[], int target) { 
 
 		int start = first(arr, 0, arr.length-1, target);
 

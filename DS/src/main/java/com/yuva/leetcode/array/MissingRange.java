@@ -1,4 +1,4 @@
- package com.yuva.leetcode.array;
+  package com.yuva.leetcode.array;
 
 import java.util.ArrayList;
 import java.util.List;
