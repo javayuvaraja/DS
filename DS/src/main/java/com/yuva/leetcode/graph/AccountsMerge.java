@@ -1,0 +1,112 @@
+package com.yuva.leetcode.graph;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * 721. Accounts Merge
+
+Given a list of accounts where each element accounts[i] is a list of strings, 
+where the first element accounts[i][0] is a name, and the rest of the elements 
+are emails representing emails of the account.
+
+Now, we would like to merge these accounts. Two accounts definitely belong to the same person 
+if there is some common email to both accounts.
+ Note that even if two accounts have the same name, they may belong to different people as people 
+ could have the same name. A person can have any number of accounts initially, 
+ but all of their accounts definitely have the same name.
+
+After merging the accounts, return the accounts in the following format: 
+the first element of each account is the name, and the rest of the elements are emails in sorted order. 
+The accounts themselves can be returned in any order.
+
+ 
+
+Example 1:
+
+Input: accounts = [["John","johnsmith@mail.com","john_newyork@mail.com"],["John","johnsmith@mail.com","john00@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]]
+Output: [["John","john00@mail.com","john_newyork@mail.com","johnsmith@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]]
+Explanation:
+The first and third John's are the same person as they have the common email "johnsmith@mail.com".
+The second John and Mary are different people as none of their email addresses are used by other accounts.
+We could return these lists in any order, for example the answer [['Mary', 'mary@mail.com'], ['John', 'johnnybravo@mail.com'], 
+['John', 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com']] would still be accepted.
+Example 2:
+
+Input: accounts = [["Gabe","Gabe0@m.co","Gabe3@m.co","Gabe1@m.co"],["Kevin","Kevin3@m.co","Kevin5@m.co","Kevin0@m.co"],["Ethan","Ethan5@m.co","Ethan4@m.co","Ethan0@m.co"],["Hanzo","Hanzo3@m.co","Hanzo1@m.co","Hanzo0@m.co"],["Fern","Fern5@m.co","Fern1@m.co","Fern0@m.co"]]
+Output: [["Ethan","Ethan0@m.co","Ethan4@m.co","Ethan5@m.co"],["Gabe","Gabe0@m.co","Gabe1@m.co","Gabe3@m.co"],["Hanzo","Hanzo0@m.co","Hanzo1@m.co","Hanzo3@m.co"],["Kevin","Kevin0@m.co","Kevin3@m.co","Kevin5@m.co"],["Fern","Fern0@m.co","Fern1@m.co","Fern5@m.co"]]
+ * @author Yuvaraja Kanagarajan
+ *
+ */
+public class AccountsMerge {
+	
+	/**
+	 * Build graph and use the dfs algo
+	 * @param accounts
+	 * @return
+	 */
+	public List<List<String>> accountsMerge(List<List<String>> accounts) {
+		// email to email connected
+		Map<String, Set<String>> graph = new HashMap<String, Set<String>>();
+		// email to user
+		Map<String, String> emailToUser = new HashMap<>();
+		buildGraph(graph, emailToUser, accounts);
+		List<List<String>> result = new ArrayList<List<String>>();
+		Set<String> visited = new HashSet<String>();
+
+		for (String email : emailToUser.keySet()) {
+			if (!visited.contains(email)) {
+				visited.add(email);
+				List<String> currList = new ArrayList<String>();
+				currList.add(email);
+				dfs(graph, currList, visited, email);
+				Collections.sort(currList);
+				currList.add(0, emailToUser.get(email));
+				result.add(currList);
+			}
+		}
+		return result;
+	}
+
+	/*
+	 * Graph email to another email as edges
+	 */
+	private void buildGraph(Map<String, Set<String>> graph, Map<String, String> emailToUser,
+			List<List<String>> accounts) {
+		for (List<String> account : accounts) {
+			String name = account.get(0);
+			for (int i = 1; i < account.size(); i++) {
+				String mail = account.get(i);
+				emailToUser.put(mail, name);
+				graph.putIfAbsent(mail, new HashSet<String>());
+				if (i == 1) {
+					continue;
+				}
+
+				String prev = account.get(i - 1);
+				graph.get(prev).add(mail);
+				graph.get(mail).add(prev);
+			}
+		}
+	}
+
+	private void dfs(Map<String, Set<String>> graph, List<String> result, Set<String> visited, String email) {
+		// it is not connected to any other email
+		if (graph.get(email) == null || graph.get(email).size() == 0) {
+			return;
+		}
+
+		for (String neighbour : graph.get(email)) {
+			if (!visited.contains(neighbour)) {
+				visited.add(neighbour);
+				result.add(neighbour);
+				dfs(graph, result, visited, neighbour);
+			}
+		}
+	}
+}

@@ -6,7 +6,7 @@ import java.util.Map;
 public class DisjointSet {
 
     private Map<Long, Node> map = new HashMap<>();
-
+    int count = 0;
     class Node {
         long data;
         Node parent;
@@ -22,6 +22,7 @@ public class DisjointSet {
         node.parent = node;
         node.rank = 0;
         map.put(data, node);
+        count++;
     }
 
     /**
@@ -34,8 +35,8 @@ public class DisjointSet {
         Node node1 = map.get(data1);
         Node node2 = map.get(data2);
 
-        Node parent1 = findSet(node1);
-        Node parent2 = findSet(node2);
+        Node parent1 = findParent(node1);
+        Node parent2 = findParent(node2);
 
         //if they are part of same set do nothing
         if (parent1.data == parent2.data) {
@@ -50,6 +51,7 @@ public class DisjointSet {
         } else {
             parent1.parent = parent2;
         }
+        count--;
         return true;
     }
 
@@ -57,19 +59,19 @@ public class DisjointSet {
      * Finds the representative of this set
      */
     public long findSet(long data) {
-        return findSet(map.get(data)).data;
+        return findParent(map.get(data)).data;
     }
 
     /**
      * Find the representative recursively and does path
      * compression as well.
      */
-    private Node findSet(Node node) {
+    private Node findParent(Node node) {
         Node parent = node.parent;
         if (parent == node) {
             return parent;
         }
-        node.parent = findSet(node.parent);
+        node.parent = findParent(node.parent);
         return node.parent;
     }
 

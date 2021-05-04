@@ -29,4 +29,27 @@ public class NumberOfProvince {
 		}
 	}
 	
+	public int findCircleNum1(int[][] M) {
+        int n = M.length;
+        DisjointSet uf = new DisjointSet();
+        for (int i=0; i < n; i++) {
+        	uf.makeSet(i);;
+        }
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (M[i][j] == 1) uf.union(i, j);
+            }
+        }
+        return uf.count;
+    }
+	
+	public static void main(String[] args) {
+		/*
+		 * int arr[][]= new int[][]{ {1,0,0}, {0,1,0}, {0,0,1} };
+		 */
+		int arr[][] = new int[][]{{1,1,0},{1,1,0},{0,0,1}};
+		NumberOfProvince obj =new NumberOfProvince();
+		System.out.println(obj.findCircleNum1(arr));
+	}
+	
 }
