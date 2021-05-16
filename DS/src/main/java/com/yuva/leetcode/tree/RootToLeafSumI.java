@@ -13,14 +13,15 @@ public class RootToLeafSumI {
 		if (node == null) {
 			return ;
 		}
+		currSum += node.val;
+
 		if (node.left == null && node.right == null) {
-			currSum += node.val;
 			totalSum += currSum;
 			return;
 		}
 		
-		rootToLeafSum(node.left, currSum+node.val);
-		rootToLeafSum(node.right, currSum+node.val);
+		rootToLeafSum(node.left, currSum);
+		rootToLeafSum(node.right, currSum);
 	}
 	
 	public static void main(String[] args) {

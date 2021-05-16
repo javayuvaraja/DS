@@ -128,23 +128,26 @@ public class ValidateSingleBinaryTree {
 	 */
 	
 	public boolean isBinaryTree(List<TreeNode> nodes) {
-		Map<TreeNode, Integer> degree = new HashMap<>();
+		Map<TreeNode, Integer> indegreeMap = new HashMap<>();
 		for (TreeNode node : nodes) {
 			if (node.left != null)
-				degree.put(node.left, degree.getOrDefault(node.left, 0) + 1);
+				indegreeMap.put(node.left, indegreeMap.getOrDefault(node.left, 0) + 1);
 			if (node.right != null)
-				degree.put(node.right, degree.getOrDefault(node.right, 0) + 1);
+				indegreeMap.put(node.right, indegreeMap.getOrDefault(node.right, 0) + 1);
 		}
 		TreeNode root = null;
 		for (TreeNode node : nodes) {
-			if (!degree.containsKey(node)) {
-				if (root == null)
+			if (!indegreeMap.containsKey(node)) { // for checking the root
+				if (root == null) {
 					root = node;
-				else
+				} else {  // two nodes cannot be the root
 					return false;
-			} else if (degree.get(node) != 1)
+				}
+			} else if (indegreeMap.get(node) != 1) {  // more than one parent
 				return false;
+			}
 		}
-		return root != null && nodes.size() == degree.keySet().size() + 1;
+		return root != null 
+				&& nodes.size() == indegreeMap.keySet().size() + 1; // checking nodes count and indegree map count + 1 (for root)
 	}
 }

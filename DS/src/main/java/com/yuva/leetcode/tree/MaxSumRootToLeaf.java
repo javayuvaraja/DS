@@ -23,7 +23,7 @@ public class MaxSumRootToLeaf {
     {
         findMaxSum (root, 0);
         System.out.println("The maximum sum is " + maxSum);   
-        PrintPathGivenSum.printPathSum(root, maxSum);
+        HasPathSum.printPathSum(root, maxSum);
     }
  
     public static void main(String[] args)

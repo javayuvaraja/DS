@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+
 public class VerticalOrderTraversal {
 
 	static Map<Integer, List<TreeNode>> map = new TreeMap<>();
@@ -24,20 +25,6 @@ public class VerticalOrderTraversal {
         map.put(hd, nodes);
     }
     
-    private static void printTopView() {
-    	System.out.println("TopView : ");
-        for (Map.Entry<Integer, List<TreeNode>> entry: map.entrySet()){
-            System.out.print(entry.getValue().get(0).val + " ");
-        }
-    }
-    
-    private static void printBottomView() {
-    	System.out.println("BottomView : ");
-        for (Map.Entry<Integer, List<TreeNode>> entry: map.entrySet()){
-            System.out.print(entry.getValue().get(entry.getValue().size() - 1).val + " ");
-        }
-    }
-    
     public static void main(String[] args) {
     	 TreeNode root = new TreeNode(5);
          root.left = (new TreeNode(7));
@@ -54,10 +41,7 @@ public class VerticalOrderTraversal {
              System.out.print(entry.getKey() + ": ");
              entry.getValue().forEach(val -> System.out.print(val.val+ " "));
              System.out.println();
-         }
-         
-         printBottomView();
-         printTopView();
+         }                
 	}
     
     public List<List<Integer>> verticalTraversal(TreeNode root) {

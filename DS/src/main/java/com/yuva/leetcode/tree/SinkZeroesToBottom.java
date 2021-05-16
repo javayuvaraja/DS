@@ -33,12 +33,12 @@ public class SinkZeroesToBottom {
      * Logic : post order traversal and store the zero count and non zero values
      */
     public void sinkZeroesInBinaryTree(TreeNode node) {
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> nonZeroStack = new Stack<>();
         AtomicInteger zeroCount = new AtomicInteger(0);
-        dfs(node, stack, zeroCount);
+        dfs(node, nonZeroStack, zeroCount);
     }
 
-    private void dfs(TreeNode node, Stack<Integer> stack, AtomicInteger zeroCount) {
+    private void dfs(TreeNode node, Stack<Integer> nonZeroStack, AtomicInteger zeroCount) {
         if (node == null) {
             return;
         }
@@ -46,17 +46,17 @@ public class SinkZeroesToBottom {
         if (node.val == 0) {
             zeroCount.getAndIncrement();
         } else {
-            stack.push(node.val);
+            nonZeroStack.push(node.val);
         }
 
-        dfs(node.left, stack, zeroCount);
-        dfs(node.right, stack, zeroCount);
+        dfs(node.left, nonZeroStack, zeroCount);
+        dfs(node.right, nonZeroStack, zeroCount);
 
         if (zeroCount.intValue() > 0) {
             node.val = 0;
             zeroCount.getAndDecrement();            
         } else {
-            node.val = stack.pop();
+            node.val = nonZeroStack.pop();
         }
     }
 

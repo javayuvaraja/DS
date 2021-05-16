@@ -1,6 +1,6 @@
 package com.yuva.leetcode.tree;
 
-public class PrintPathGivenSum {
+public class HasPathSum {
 
 	public static boolean printPathSum(TreeNode node, int sum ) {
 		

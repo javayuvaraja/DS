@@ -5,7 +5,22 @@ import java.util.Queue;
 
 /**
  * 116. Populating Next Right Pointers in Each Node
- * 
+ 
+ Input Tree
+       A
+      / \
+     B   C
+    / \   \
+   D   E   F
+
+Output Tree
+       A--->NULL
+      / \
+     B-->C-->NULL
+    / \   \
+   D-->E-->F-->NULL
+   
+   
  * You are given a perfect binary tree where all leaves are on the same level, and every parent has two children. 
  * The binary tree has the following definition:
 

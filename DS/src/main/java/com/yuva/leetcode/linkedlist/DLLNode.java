@@ -1,11 +1,11 @@
 package com.yuva.leetcode.linkedlist;
 
-public class DLLNode {
-	public ListNode prev;
-	public ListNode next;
-	public int val;
+public class DLLNode<T> {
+	public DLLNode<T> prev;
+	public DLLNode<T> next;
+	public T val;
 	
-	public DLLNode (int val) {
+	public DLLNode (T val) {
 		this.val = val;
 	}
 }

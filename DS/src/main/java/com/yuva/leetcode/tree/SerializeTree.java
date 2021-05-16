@@ -34,11 +34,12 @@ public class SerializeTree {
 		String val = nodes.remove();
 		if (val == "#") {
 			return null;
-		} else {
-			TreeNode node = new TreeNode (Integer.parseInt(val));
-			node.left = buildTree(nodes);
-			node.right = buildTree(nodes);
-			return node;
-		}		
+		} 
+		
+		TreeNode node = new TreeNode (Integer.parseInt(val));
+		node.left = buildTree(nodes);
+		node.right = buildTree(nodes);
+		return node;
+			
 	}
 }

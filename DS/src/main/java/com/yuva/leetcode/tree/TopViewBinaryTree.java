@@ -3,10 +3,10 @@ package com.yuva.leetcode.tree;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.Map.Entry;
 
 public class TopViewBinaryTree {
 
@@ -59,7 +59,6 @@ public class TopViewBinaryTree {
 	}
 	
 	
-	public static void main(String[] args) {
-		
-	}
+	
+	
 }
