@@ -9,12 +9,16 @@ import java.util.Queue;
  * Given the root of a binary tree, return the leftmost value in the last row of the tree.
  * https://leetcode.com/problems/find-bottom-left-tree-value/
  * 
- * Level order traversal. Add the right node first in the queue because we need the last node at the end
+ * 
  * @author Yuvaraja Kanagarajan
  *
  */
 public class FindBottomLeftTreeValue {
 
+	/*
+	 * Logic : Level order traversal. Add the right node first in the queue because
+	 *  we need the last node at the end
+	 */
 	public int findBottomLeftValue(TreeNode root) {
 		if (root == null) {
 			return 0;

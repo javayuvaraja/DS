@@ -25,13 +25,17 @@ public class CanSwapForMakingSorted {
        
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] < prev) {
-                if (outOfOrder > -1) return false;
+                if (outOfOrder > -1) {  // already out of order element is there
+                	return false;
+                }
                 outOfOrder = i;
             }
             prev = arr[i];
         }
 
-        if (outOfOrder == -1) return true;
+        if (outOfOrder == -1) { // no changes are required
+        	return true;
+        }
         // Check whether current or prev index can be reorder and make the array is sorted.
         return checkCanModifyNumber(arr, outOfOrder - 1)
                 || checkCanModifyNumber(arr, outOfOrder);

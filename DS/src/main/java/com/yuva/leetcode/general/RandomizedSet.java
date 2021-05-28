@@ -6,6 +6,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * 380. Insert Delete GetRandom O(1)
+
+Implement the RandomizedSet class:
+
+RandomizedSet() Initializes the RandomizedSet object.
+bool insert(int val) Inserts an item val into the set if not present. R
+eturns true if the item was not present, false otherwise.
+bool remove(int val) Removes an item val from the set if present. 
+Returns true if the item was present, false otherwise.
+int getRandom() Returns a random element from the current set of elements 
+(it's guaranteed that at least one element exists when this method is called). 
+Each element must have the same probability of being returned.
+
+ * @author Yuvaraja Kanagarajan
+ *
+ */
 class RandomizedSet {
 
 	List<Integer> numsList;

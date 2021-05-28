@@ -81,29 +81,24 @@ public class PopulateNextPointerI {
         }
         Queue<TreeLinkNode> queue = new LinkedList<>();
 		queue.add(root);
-		queue.add(null);
 		TreeLinkNode prevNode = null;
 		while (!queue.isEmpty()) {
-			TreeLinkNode currNode = queue.poll();
-			if (currNode==null) {
-				if (!queue.isEmpty()) {
-					queue.add(null);
-					prevNode = null;
-					continue;
-				} else {
-					break;
+			int size = queue.size();
+			for (int i = 0; i < size; i++) {
+				TreeLinkNode currNode = queue.poll();
+				if (currNode.left!=null) {
+					queue.add(currNode.left);
 				}
-			} 
-			if (currNode.left!=null) {
-				queue.add(currNode.left);
+				if (currNode.right!=null) {
+					queue.add(currNode.right);
+				}
+				if (prevNode!=null) {
+					prevNode.next = currNode;
+				}
+				prevNode = currNode;
 			}
-			if (currNode.right!=null) {
-				queue.add(currNode.right);
-			}
-			if (prevNode!=null) {
-				prevNode.next = currNode;
-			}
-			prevNode = currNode;
+			prevNode = null;
+			
 		}
 		return root;
     }

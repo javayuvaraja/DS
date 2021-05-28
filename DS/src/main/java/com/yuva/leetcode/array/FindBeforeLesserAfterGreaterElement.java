@@ -29,7 +29,8 @@ public class FindBeforeLesserAfterGreaterElement {
 	   2. Traverse input array from left to right and fill leftMax[] such that leftMax[i] 
 	      contains a maximum element from 0 to i-1 in the input array.
 	   3. Traverse input array from right to left and fill rightMin[] such that rightMin[i] contains a minimum element from to n-1 to i+1 in the input array.
-Traverse input array. For every element arr[i], check if arr[i] is greater than leftMax[i] and smaller than rightMin[i]. If yes, return i.
+          Traverse input array. 
+                For every element arr[i], check if arr[i] is greater than leftMax[i] and smaller than rightMin[i]. If yes, return i.
 	 */
 	
 	

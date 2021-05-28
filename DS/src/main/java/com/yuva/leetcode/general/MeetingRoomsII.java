@@ -17,25 +17,56 @@ import java.util.PriorityQueue;
  */
 public class MeetingRoomsII {
 	public int minMeetingRooms(int[][] intervals) {
-		Arrays.sort(intervals, Comparator.comparing((int[] itv) -> itv[0]));
-
+		// Sorting based on the start time
+		int start = 0;
+		int end = 1;
+		Arrays.sort(intervals, Comparator.comparing((int[] interval) -> interval[start]));
+		// Adding to the end time to the heap
 		PriorityQueue<Integer> heap = new PriorityQueue<>();
 		int count = 0;
-		for (int[] itv : intervals) {
+		
+		for (int[] interval : intervals) {
 			if (heap.isEmpty()) {
 				count++;
-				heap.offer(itv[1]);
+				heap.offer(interval[end]);
 			} else {
-				if (itv[0] >= heap.peek()) {
+				if (interval[start] >= heap.peek()) {
 					heap.poll();
 				} else {
 					count++;
 				}
 
-				heap.offer(itv[1]);
+				heap.offer(interval[end]);
 			}
 		}
 
 		return count;
+	}
+	
+	
+	public int minMeetingRooms1(int[][] intervals) {
+		// Sorting based on the start time
+		int start = 0;
+		int end = 1;
+		Arrays.sort(intervals, Comparator.comparing((int[] interval) -> interval[end]));
+		int endIndex = 0;
+		int required = 1;
+		for (int i =1; i < intervals.length; i++) {
+			if (!(intervals[i][start] >= intervals[endIndex][end])) {
+				required++;
+			} else {
+				endIndex++;
+			}
+		}
+
+		return required;
+	}
+	
+	public static void main(String[] args) {
+		int [][]intervals =  new int[][] {{0, 30},{5,10},{15, 20}, {10, 15}, {20, 45}};
+		MeetingRoomsII obj = new MeetingRoomsII();
+		System.out.println(obj.minMeetingRooms(intervals));
+		System.out.println(obj.minMeetingRooms1(intervals));
+		
 	}
 }

@@ -16,7 +16,7 @@ Some courses may have prerequisites, for example, if prerequisites[i] = [ai, bi]
 
 Given the total number of courses numCourses and a list of the prerequisite pairs, return the ordering of courses you should take to finish all courses.
 
-If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.
+If there are many vali d answers, return any of them. If it is impossible to finish all courses, return an empty array.
 
 Example 1:
 

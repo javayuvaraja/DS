@@ -31,19 +31,20 @@ Output: false
  */
 public class ContinousSubArraySumMultipleOfK {
 	public boolean checkSubarraySum(int[] nums, int k) {
-		Map<Integer, Integer> map = new HashMap<>();
-		map.put(0, -1);
-		int runningSum = 0;
+		Map<Integer, Integer> prefixSum = new HashMap<>();
+		prefixSum.put(0, -1);
+		int currSum = 0;
 		for (int i = 0; i < nums.length; i++) {
-			runningSum += nums[i];
-			if (k != 0)
-				runningSum %= k;
-			Integer prev = map.get(runningSum);
-			if (prev != null) {
-				if (i - prev > 1)
+			currSum += nums[i];
+			if (k != 0) {
+				currSum %= k;
+			}
+			Integer prev = prefixSum.get(currSum);
+			if (prev != null) { // checking whether already exists
+				if (i - prev > 1)  // check whether window length is greater than 1
 					return true;
 			} else
-				map.put(runningSum, i);
+				prefixSum.put(currSum, i);  // storing the modulo value and index
 		}
 		return false;
 	}

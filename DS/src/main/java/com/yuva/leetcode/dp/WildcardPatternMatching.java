@@ -8,7 +8,8 @@ public class WildcardPatternMatching {
 		while (strIndex < str.length()) {
 			// advancing both pointers
 			if (patternIndex < pattern.length() && 
-					(pattern.charAt(patternIndex) == '?' || str.charAt(strIndex) == pattern.charAt(patternIndex))) {
+					(pattern.charAt(patternIndex) == '?' || 
+					str.charAt(strIndex) == pattern.charAt(patternIndex))) {
 				strIndex++;
 				patternIndex++;
 			}
@@ -16,7 +17,6 @@ public class WildcardPatternMatching {
 			else if (patternIndex < pattern.length() && pattern.charAt(patternIndex) == '*') {
 				starIndex = patternIndex;
 				match = strIndex;
-				
 				patternIndex++;
 			}
 			// last pattern pointer was *, advancing string pointer
@@ -43,12 +43,12 @@ public class WildcardPatternMatching {
         boolean result[][] = new boolean[s.length()+1][p.length()+1];
         result[0][0] = true;
         int index = 1; 
+        
+        // Handling edge case, when pattern starts with *
         while (index-1 < p.length() && p.charAt(index-1)=='*') {
             result[0][index++] = true;
         }
-        if (p.length()>0 && p.charAt(0)=='*' ) {
-            
-        }
+        
         for (int i=1; i < result.length; i++) {
             for (int j=1; j < result[0].length; j++) {
                 if (s.charAt(i-1)==p.charAt(j-1) || 
@@ -62,12 +62,14 @@ public class WildcardPatternMatching {
             }
         }
         
-        for (int i=0; i < result.length; i++) {
-            for (int j=0; j < result[0].length; j++) {
-                System.out.print (result[i][j] + " ");
-            }
-            System.out.println ();
-        }
         return result[result.length-1] [result[0].length-1];
     }
+	
+	public static void main(String[] args) {
+		String pattern = "x?y*z";
+		String text = "xaylmz";
+		WildcardPatternMatching obj = new WildcardPatternMatching();
+		obj.comparison(text, pattern);
+		
+	}
 }

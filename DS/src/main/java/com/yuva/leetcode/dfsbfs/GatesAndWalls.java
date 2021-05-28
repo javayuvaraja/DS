@@ -53,28 +53,19 @@ public class GatesAndWalls {
 		int []dirY = {1,-1,0,0};
 		
 	    while(!q.isEmpty()){
-
 	        level++;
-
 	        int n = q.size();
-
 	        for(int i=0;i<n;i++){
-
 	            int [] point = q.poll();
-
 	            for(int j=0;j<dirX.length-1;j++){
-
 	            	int newRow = point[0] + dirX[j];
-	                int newCol = point[1] + dirX[j];
+	                int newCol = point[1] + dirY[j];
 
-	                if(newRow>=0 && newCol>=0 && newRow < rowLen && newCol < colLen){
-
-	                    if(grid[newRow][newCol]=='_'){
-
+	                if(newRow>=0 && newRow < rowLen &&  
+	                   newCol>=0  && newCol < colLen &&
+	                   grid[newRow][newCol]=='_') {
 	                        grid[newRow][newCol] =(char) (48+level);
 	                        q.add(new int[]{newRow,newCol});
-	                    }
-
 	                }
 	            }
 	        }

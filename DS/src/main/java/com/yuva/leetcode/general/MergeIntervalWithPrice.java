@@ -3,8 +3,14 @@ package com.yuva.leetcode.general;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.*;
 
+/**
+ * Goldman Sachs
+ * @author Yuvaraja Kanagarajan
+ *
+ */
 public class MergeIntervalWithPrice {
 	private class Interval {
 		int startTime;
@@ -65,7 +71,7 @@ public class MergeIntervalWithPrice {
 			if (curr.startTime > prev.endTime) {
 				result.add(prev);
 				prev = curr;
-			} else { // overlap
+			} else { // complete overlap
 				if (prev.startTime <= curr.startTime && 
 						prev.endTime >= curr.endTime) { // completely overlap
 					if (prev.price <= curr.price) { 
@@ -88,6 +94,46 @@ public class MergeIntervalWithPrice {
 		System.out.println("Result : " + result);
 		return result;
 	}
+	
+	
+	private List<Interval> findMinPrice (List<Interval> vendors) {
+		TreeMap<Integer, Integer> priceMap = new TreeMap<>();
+		List<Interval> result = new ArrayList<>();
+		for (Interval interval : vendors) {
+			for (int startTime = interval.startTime ; startTime <= interval.endTime; startTime++) {
+				if (priceMap.containsKey(startTime)) {
+					priceMap.put(startTime, Math.min(priceMap.get(startTime), interval.price));
+				} else {
+					priceMap.put(startTime, interval.price);
+				}
+			}
+		}
+		
+		
+		List<Integer> priceSet = priceMap.keySet().stream().collect(Collectors.toList());
+		
+		int prevTime = priceSet.get(0);
+		Interval prevInterval = new Interval(prevTime, prevTime, priceMap.get(prevTime));
+		
+		for (int i=1; i <priceSet.size(); i++) {
+			int currTime = priceSet.get(i);
+			int currPrice = priceMap.get(currTime);
+			if (currTime == prevInterval.endTime + 1 &&
+					currPrice == prevInterval.price) { // consecutive interval
+				prevTime = currTime;
+				prevInterval.endTime = prevTime;
+				continue;
+			} else {
+				prevInterval.endTime = prevTime;
+				result.add(prevInterval);
+				prevInterval = new Interval(currTime, currTime, currPrice);
+				prevTime = currTime;
+			}
+		} 
+		prevInterval.endTime = prevTime;
+		result.add(prevInterval);
+		return result;
+	}
 
 	/**
 	 * Returns true if the tests pass. Otherwise, false.
@@ -108,7 +154,10 @@ public class MergeIntervalWithPrice {
 		List<Interval> inputList = new ArrayList<>(Arrays.asList(sampleInput));
 		List<Interval> expectedList = new ArrayList<>(Arrays.asList(expectedOutput));
 
-		return expectedList.equals(getLowestPrices(inputList));
+		//return expectedList.equals(getLowestPrices(inputList));
+		List<Interval> result = findMinPrice(inputList);
+		return expectedList.equals(result);
+		
 	}
 
 	/**

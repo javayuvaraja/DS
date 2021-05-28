@@ -38,8 +38,26 @@ public class SortIntegerByPowerValues {
 	    }
 	    return level;
 	}
+    
+    private int levelItil(int num ){
+	    if (num == 1) {
+	    	return 0;
+	    }
+	    
+	    if (map.containsKey(num)) {
+	    	return map.get(num);
+	    }
+	    
+	    if (num%2==0) {
+	    	map.put(num, levelItil(num/2)+1);
+	    } else {
+	    	map.put(num, levelItil(3*num+1)+1);
+	    }
+	    
+	    return map.get(num);
+	}
 	
 	public static void main(String[] args) {
-		
+		 int lo = 12, hi = 15, k = 2;
 	}
 }

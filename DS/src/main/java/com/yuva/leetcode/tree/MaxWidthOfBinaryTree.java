@@ -27,6 +27,12 @@ public class MaxWidthOfBinaryTree {
             this.node = node;
         }
     }	
+	
+	/*
+	 * Logic : Level order traversal. 
+	 * 		1. Left child node distance is 2* currDist, right 2*currDist+1
+	 *      2. Total distance is endDist-startDist
+	 */
     public int widthOfBinaryTree(TreeNode root) {
         if (root == null) {
             return 0;
@@ -47,8 +53,8 @@ public class MaxWidthOfBinaryTree {
                     queue.add(new Pair(pair.node.left, currDist*2));    
                 }
                 if (pair.node.right!= null) {
-                    queue.add(new Pair(pair.node.right, currDist*2+1));    
-                }
+                }                    queue.add(new Pair(pair.node.right, currDist*2+1));    
+
             }
             maxWidth = Math.max(maxWidth, currDist-firstNodeDist+1);
         }

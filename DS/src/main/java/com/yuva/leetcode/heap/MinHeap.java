@@ -16,7 +16,7 @@ public class MinHeap {
 			return -1;
 		}
 		return (childIndex - 1) / 2;
-	}
+	} 
 	
 	public int getLeftChild(int parentIndex) {
 		int leftChild = 2 * parentIndex + 1;

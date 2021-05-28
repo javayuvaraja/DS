@@ -1,7 +1,8 @@
 package com.yuva.leetcode.tree;
 
 /**
- * Leetcode 988. Smallest String Starting From Leaf
+
+Leetcode 988. Smallest String Starting From Leaf
 
 Given the root of a binary tree, each node has a value from 0 to 25 
 representing the letters 'a' to 'z': a value of 0 represents 'a', a value of 1 represents 'b', and so on.
@@ -25,9 +26,11 @@ public class SmallestFromLeaf {
 	        return suffix;
 	    }
 	    suffix = "" + (char)('a' + node.val) + suffix;
+	    // leaf node
 	    if(null == node.left && null == node.right) {
 	        return suffix;
 	    }
+	    // 
 	    if(null == node.left || null == node.right) {
 	        return (null == node.left)? dfs(node.right, suffix) :dfs(node.left, suffix);
 	    }

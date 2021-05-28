@@ -31,14 +31,14 @@ public class RandomPickWithWeight {
 
 	public int pickIndex() {
 		int len = wSums.length;
-		int idx = random.nextInt(wSums[len - 1]) + 1;
+		int randomNum = random.nextInt(wSums[len - 1]) + 1;
 		int left = 0, right = len - 1;
 		// search position
 		while (left < right) {
 			int mid = left + (right - left) / 2;
-			if (wSums[mid] == idx)
+			if (wSums[mid] == randomNum)
 				return mid;
-			else if (wSums[mid] < idx)
+			else if (wSums[mid] < randomNum)
 				left = mid + 1;
 			else
 				right = mid;

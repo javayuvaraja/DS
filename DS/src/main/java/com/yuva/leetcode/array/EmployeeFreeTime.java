@@ -60,6 +60,6 @@ public class EmployeeFreeTime {
 	}
 	
 	public static void main(String[] args) {
-		
+		//schedule = [[[1,3],[6,7]],[[2,4]],[[2,5],[9,12]]]
 	}
 }

@@ -1,12 +1,11 @@
 package com.yuva.leetcode.linkedlist;
 
-public class AddNumberAsItAs {
+public class AddTwoNumberAsItAs {
 
 	ListNode result;
 	int carry;
 
-	/* A utility function to push a value to linked list */
-	void push(int val) {
+	void insertToResult(int val) {
 		ListNode newnode = new ListNode(val);
 		newnode.next = result;
 		result = newnode;
@@ -24,7 +23,7 @@ public class AddNumberAsItAs {
 		sum = sum % 10;
 
 		// Push this to result list
-		push(sum);
+		insertToResult(sum);
 
 	}
 
@@ -38,7 +37,7 @@ public class AddNumberAsItAs {
 			sum %= 10;
 
 			// add this node to the front of the result
-			push(sum);
+			insertToResult(sum);
 		}
 	}
 
@@ -89,13 +88,13 @@ public class AddNumberAsItAs {
 		// if some carry is still there, add a new node to
 		// the front of the result list. e.g. 999 and 87
 		if (carry > 0) {
-			push(carry);
+			insertToResult(carry);
 		}
 
 	}
 	
 	public static void main(String[] args) {
-		AddNumberAsItAs obj = new AddNumberAsItAs();
+		AddTwoNumberAsItAs obj = new AddTwoNumberAsItAs();
 		
 		ListNode node1= new ListNode(5);
 		node1.next = new ListNode(8);
@@ -111,8 +110,6 @@ public class AddNumberAsItAs {
 			System.out.print(result.val + " ");
 			result = result.next;
 		}
-		
-		
 	}
 
 }

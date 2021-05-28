@@ -20,14 +20,18 @@ public class PrintUncommonItems {
 		List<Integer> result = new ArrayList<Integer>();
 		int i = 0, j = 0;
 		while (i < arr1.length && j < arr2.length) {
+			
+			if (arr1[i] == arr2[j]) {
+				i++;
+				j++;
+				continue;
+			}
 			// If not common, print smaller
 			if (arr1[i] < arr2[j]) {
 				result.add(arr1[i++]);
-			} else if (arr2[j] < arr1[i]) {
+			} else {
 				result.add(arr2[j++]);
-			} else { // Skip common element
-				i++;j++;
-			}
+			} 
 		}
 
 		// printing remaining elements
