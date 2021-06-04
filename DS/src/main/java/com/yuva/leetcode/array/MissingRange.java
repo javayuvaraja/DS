@@ -16,47 +16,41 @@ import java.util.List;
  */
 public class MissingRange {
 
-	public List<String> findMissingRanges(int[] nums, int lower, int upper) {
+	public List<String> findMissingRanges(int[] nums, int low, int high) {
 		List<String> result = new ArrayList<>();
 		
-		if (lower==Integer.MAX_VALUE) {
-			return result;
-		}		
-		int expecting = lower;
-		for (int i=0; i < nums.length; i++) {
-			// not in the boundary
-			if (expecting > nums[i]) {
-				continue;
-			}
-			// if the current element is in consecutive order then continue
-			if (expecting == nums[i]) {
-				expecting++;
-				continue;
-			}
-			// add the range
-			result.add(createRange(expecting, nums[i]-1));
-			
-			if(nums[i]==upper) {
-				break;
-			}
-			expecting = nums[i]+1;			
+		if (nums.length==0) {
+			addRange(result, low-1, high+1);
 		}
 		
-		// upper boundary
-		if(expecting < upper) {
-			result.add(createRange(expecting, upper));
+		addRange(result, low-1, nums[0]);
+		
+		for(int i=1; i < nums.length; i++) {
+			addRange(result, nums[i-1], Math.min(nums[i], high+1)); // Math.min for till the higher
 		}
+		
+		addRange(result, nums[nums.length-1], high+1);
 		
 		return result;
 	}
 	
-	private String createRange(int start, int end) {
-		return start==end ? String.valueOf(start) : start+"->"+end;
+	private void addRange(List<String> result, int low, int high) {
+		if (low > high || low == high || low+1== high) { // for same and consecutive, lower is greater than the higher
+			return;
+		} else if (low+1 == high-1) { // single element missing
+			result.add(String.valueOf(low+1));
+		} else {
+			StringBuilder sb = new StringBuilder();
+			sb.append(String.valueOf(low+1));
+			sb.append("->");
+			sb.append(String.valueOf(high-1));
+			result.add(sb.toString());
+		}
 	}
 	
 	public static void main(String[] args) {
 		MissingRange obj = new MissingRange();
- 		int nums[] = {0, 1, 3, 50, 75};
-		System.out.println(obj.findMissingRanges(nums, 0, 90));
+ 		int nums[] = {10, 11, 13, 50, 75};
+		System.out.println(obj.findMissingRanges(nums, 0, 65));
 	}
 }

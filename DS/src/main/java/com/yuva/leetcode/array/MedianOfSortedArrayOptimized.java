@@ -2,8 +2,7 @@ package com.yuva.leetcode.array;
 
 public class MedianOfSortedArrayOptimized {
 
-	/**
-	 *   
+/**
 The idea is to merge both the arrays and return the middle element [or average of middle elements if m+n is even].
 BUT, we don't have to store the merged array.
 We just need the pointers to both the arrays, 

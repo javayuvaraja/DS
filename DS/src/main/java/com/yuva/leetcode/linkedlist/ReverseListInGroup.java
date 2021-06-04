@@ -1,6 +1,6 @@
 package com.yuva.leetcode.linkedlist;
 
-public class ReverseNodeInGroup {
+public class ReverseListInGroup {
 
 	
 	public ListNode reverseGroup(ListNode head, int k) {
@@ -38,7 +38,7 @@ public class ReverseNodeInGroup {
 		node.next.next.next.next.next = new ListNode(6);
 		node.next.next.next.next.next.next= new ListNode(7);
 		
-		ReverseNodeInGroup obj = new ReverseNodeInGroup();
+		ReverseListInGroup obj = new ReverseListInGroup();
 		ListNode newHead = obj.reverseGroup(node, 2);
 		ListUtil.printList(newHead);
 	

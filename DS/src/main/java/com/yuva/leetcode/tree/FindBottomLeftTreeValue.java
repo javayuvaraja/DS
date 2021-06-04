@@ -38,4 +38,25 @@ public class FindBottomLeftTreeValue {
 		
 		return currNode.val;
 	}
+	
+	
+	int leftValue=0, height=0;
+    public int findBottomLeftValueRec(TreeNode root) {
+        findBottomLeftValue(root, 1);
+        return leftValue;
+    }
+    public void findBottomLeftValue(TreeNode root, int depth) {
+        if (height < depth) {
+        	leftValue=root.val;
+        	height=depth;
+        }
+        if (root.left!=null) {
+        	findBottomLeftValue(root.left, depth+1);
+        }
+        if (root.right!=null) {
+        	findBottomLeftValue(root.right, depth+1);
+        }
+    }
+    
+    // If wants to implement without the global variable then pass the int[] with two size.
 }

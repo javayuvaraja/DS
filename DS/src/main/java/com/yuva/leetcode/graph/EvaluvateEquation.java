@@ -56,7 +56,7 @@ public class EvaluvateEquation {
              result[count++] = calculate(source, dest, new HashSet<>(), graph);
         }
         return result;
-    }
+    } 
     
     
     private double calculate (String source, String dest,  Set<String> visited , 

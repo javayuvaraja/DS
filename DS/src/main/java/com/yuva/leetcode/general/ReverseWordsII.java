@@ -17,10 +17,10 @@ public class ReverseWordsII {
 
 	public void reverseWords(char[] s) {
 		reverseWords(s, 0, s.length - 1);
-		for (int i = 0, j = 0; i <= s.length; i++) {
-			if (i == s.length || s[i] == ' ') {
-				reverseWords(s, j, i - 1);
-				j = i + 1;
+		for (int end = 0, start = 0; end <= s.length; end++) {
+			if (end == s.length || s[end] == ' ') {
+				reverseWords(s, start, end - 1);
+				start = end + 1;
 			}
 		}
 	}

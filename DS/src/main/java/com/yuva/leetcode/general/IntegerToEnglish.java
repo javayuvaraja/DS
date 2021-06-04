@@ -1,5 +1,5 @@
-package com.yuva.leetcode.general;
-
+ package com.yuva.leetcode.general;
+   
 public class IntegerToEnglish {
 
 	private final String[] LESS_THAN_20 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};

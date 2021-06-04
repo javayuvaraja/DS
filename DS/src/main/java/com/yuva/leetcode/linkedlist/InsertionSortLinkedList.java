@@ -1,6 +1,6 @@
 package com.yuva.leetcode.linkedlist;
 
-public class InsertionSortKLinkedList {
+public class InsertionSortLinkedList {
 
 	
 	public ListNode insertionSort (ListNode node) {
@@ -30,7 +30,7 @@ public class InsertionSortKLinkedList {
 		head.next = new ListNode(3);
 		head.next.next = new ListNode(1);
 		head.next.next.next = new ListNode(2);
-		InsertionSortKLinkedList obj = new InsertionSortKLinkedList();
+		InsertionSortLinkedList obj = new InsertionSortLinkedList();
 		
 		ListNode sortedHead = obj.insertionSort(head);
 		ListUtil.printList(sortedHead);

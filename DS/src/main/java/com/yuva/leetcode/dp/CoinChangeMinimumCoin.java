@@ -1,8 +1,10 @@
 package com.yuva.leetcode.dp;
 
 public class CoinChangeMinimumCoin {
+	/*
 	public int coinChange(int[] coins, int amount) {
         int []result = new int[amount+1];
+        
         for (int i=1; i <=amount; i++) {
         	int min = Integer.MAX_VALUE;
         	for (int coin : coins) {
@@ -14,6 +16,21 @@ public class CoinChangeMinimumCoin {
         }
         
         return result[amount];
+    }*/
+	
+	public int coinChange(int[] coins, int amount) {
+        int []result = new int[amount+1];
+        result[0] = 0;
+        for (int i=1; i <= amount; i++) {
+            result[i] = Integer.MAX_VALUE;
+        }
+        
+        for (int coin : coins) {
+            for (int i=coin; i <=amount; i++) {
+                result[i] = Math.min(result[i-coin]+1, result[i]);
+            }
+        }
+        return result[amount]==Integer.MAX_VALUE ? -1 : result[amount];
     }
 	
 	public int min = Integer.MAX_VALUE;

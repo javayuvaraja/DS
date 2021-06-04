@@ -13,7 +13,7 @@ public class InorderTraversalIterative {
 	    }
 	    Stack<TreeNode> stack  =  new Stack<>();
 	    TreeNode currNode = root;
-	    while (currNode == null || !stack.isEmpty()) {
+	    while (currNode != null || !stack.isEmpty()) {
 	    	while (currNode!=null) {
 	    		stack.push(currNode);
 	    		currNode = currNode.left;

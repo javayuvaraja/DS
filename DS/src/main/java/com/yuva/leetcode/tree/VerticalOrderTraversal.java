@@ -5,7 +5,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ Leetcode 314 : Vertical order traversal
+ 
+ Given a binary tree, print it vertically. The following example illustrates the vertical order traversal.
 
+           1
+        /    \ 
+       2      3
+      / \   /   \
+     4   5  6   7
+               /  \ 
+              8   9 
+               
+              
+The output of print this tree vertically will be:
+4
+2
+1 5 6
+3 8
+7
+9
+ * @author Yuvaraja Kanagarajan
+ *
+ */
 public class VerticalOrderTraversal {
 
 	static Map<Integer, List<TreeNode>> map = new TreeMap<>();
