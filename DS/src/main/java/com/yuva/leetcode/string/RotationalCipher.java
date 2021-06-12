@@ -17,6 +17,25 @@ public class RotationalCipher {
 	    return result.toString();
 	}
 	
+	static String antiClockwiseRotationalCipher(String input, int rotationFactor) {
+		rotationFactor = rotationFactor %26;
+	    StringBuilder result = new StringBuilder(input.length());
+	    for (char character : input.toCharArray()) {
+	        if (character != ' ') {
+	            int originalAlphabetPosition = character - 'a';
+	            int newAlphabetPosition = (originalAlphabetPosition - rotationFactor);
+	            if (newAlphabetPosition < 0) {
+	            	newAlphabetPosition = newAlphabetPosition + 26;	            	
+	            }
+	            char newCharacter = (char) ('a' + newAlphabetPosition);
+	            result.append(newCharacter);
+	        } else {
+	            result.append(character);
+	        }
+	    }
+	    return result.toString();
+	}
+	
 	public static StringBuffer encrypt(String input, int s)
     {
         StringBuffer result= new StringBuffer();
@@ -45,6 +64,9 @@ public class RotationalCipher {
 	
 	public static void main(String[] args) {
 		String str = "Zebra-493?";
+		String str1 ="jbl";
 		System.out.println(encrypt(str, 3));
+		System.out.println(antiClockwiseRotationalCipher(str1, 3));
+
 	}
 }

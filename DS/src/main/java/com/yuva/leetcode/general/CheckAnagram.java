@@ -18,22 +18,24 @@ package com.yuva.leetcode.general;
  */
 public class CheckAnagram {
 	public boolean isAnagram(String s, String t) {
-        int[] countArr = new int[26];
-        s = s.toLowerCase();
-        t = t.toLowerCase();
-        char[] s1Arr = s.toCharArray();
-        char[] s2Arr = t.toCharArray();
-        
-        for (char ch : s1Arr) {
-            countArr[ch-'a']++;
+        if (s==null && t==null) {
+            return true;
+        }
+        if (s==null || t==null) {
+            return false;
+        }
+        if (s.length()!=t.length()) {
+            return false;
         }
         
-        for (char ch : s2Arr) {
-            countArr[ch-'a']--;
+        int []freq= new int[26];
+        for (int i =0; i < s.length(); i++) {
+            freq[s.charAt(i)-'a'] ++;
+            freq[t.charAt(i)-'a'] --;            
         }
         
-        for (int temp : countArr) {
-            if (temp!=0) {
+        for (int temp : freq) {
+            if (temp >0) {
                 return false;
             }
         }

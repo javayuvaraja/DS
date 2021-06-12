@@ -1,43 +1,53 @@
 package com.yuva.leetcode.linkedlist;
 
+/**
+
+445. Add Two Numbers II
+
+You are given two non-empty linked lists representing two non-negative integers. 
+The most significant digit comes first and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+Input: l1 = [2,4,3], l2 = [5,6,4]
+Output: [8,0,7]
+
+ * @author Yuvaraja Kanagarajan
+ *
+ */
 public class AddTwoNumberAsItAs {
 
 	ListNode result;
 	int carry;
-
-	void insertToResult(int val) {
+	ListNode cur;
+	
+	void addToFirst(int val) {
 		ListNode newnode = new ListNode(val);
 		newnode.next = result;
 		result = newnode;
 
 	}
+	
 	void addsamesize(ListNode node1, ListNode node2) {
 		if (node1 == null)
 			return;
 
 		addsamesize(node1.next, node2.next);
-
-		// add digits of current nodes and propagated carry
 		int sum = node1.val + node2.val + carry;
 		carry = sum / 10;
 		sum = sum % 10;
-
-		// Push this to result list
-		insertToResult(sum);
-
+		addToFirst(sum);
 	}
 
-	ListNode cur;
-
-	void propogatecarry(ListNode head1) {
+	void addRemaining(ListNode head1) {
 		if (head1 != cur) {
-			propogatecarry(head1.next);
+			addRemaining(head1.next);
 			int sum = carry + head1.val;
 			carry = sum / 10;
 			sum %= 10;
 
 			// add this node to the front of the result
-			insertToResult(sum);
+			addToFirst(sum);
 		}
 	}
 
@@ -63,8 +73,7 @@ public class AddTwoNumberAsItAs {
 		if (size1 == size2) {
 			addsamesize(head1, head2);
 		} else {
-			// First list should always be larger than second list.
-			// If not, swap pointers
+			// First list should always be larger than second list. If not, swap pointers
 			if (size1 < size2) {
 				ListNode temp = head1;
 				head1 = head2;
@@ -83,12 +92,12 @@ public class AddTwoNumberAsItAs {
 			addsamesize(cur, head2);
 
 			// get addition of remaining first list and carry
-			propogatecarry(head1);
+			addRemaining(head1);
 		}
 		// if some carry is still there, add a new node to
 		// the front of the result list. e.g. 999 and 87
 		if (carry > 0) {
-			insertToResult(carry);
+			addToFirst(carry);
 		}
 
 	}

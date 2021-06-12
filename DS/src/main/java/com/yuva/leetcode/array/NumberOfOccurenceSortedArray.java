@@ -27,11 +27,11 @@ public class NumberOfOccurenceSortedArray {
 	 * arr[0..n-1], otherwise returns -1
 	 */
 	static int first(int arr[], int start, int end, int target) {
-		if (end >= start) {
+		if (start <= end) {
 			int mid = (start + end) / 2;
 			if ((mid == 0 || target > arr[mid - 1]) && arr[mid] == target)
 				return mid;
-			else if (target > arr[mid])
+			else if (arr[mid] < target )
 				return first(arr, mid + 1, end, target);
 			else
 				return first(arr, start, mid - 1, target);
@@ -44,11 +44,11 @@ public class NumberOfOccurenceSortedArray {
 	 * arr[0..n-1], otherwise returns -1
 	 */
 	static int last(int arr[], int start, int end, int target) {
-		if (end >= start) {
+		if ( start <= end) {
 			int mid = (start + end) / 2;
 			if ((mid == arr.length - 1 || target < arr[mid + 1]) && arr[mid] == target)
 				return mid;
-			else if (target < arr[mid])
+			else if (arr[mid] > target)
 				return last(arr, start, mid - 1, target);
 			else
 				return last(arr, mid + 1, end, target);

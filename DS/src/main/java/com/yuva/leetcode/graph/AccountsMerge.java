@@ -50,6 +50,9 @@ public class AccountsMerge {
 	 * @param accounts
 	 * @return
 	 */
+	
+	// Questions : whether same email id can associated with two different user name ?
+	
 	public List<List<String>> accountsMerge(List<List<String>> accounts) {
 		// email to email connected
 		Map<String, Set<String>> graph = new HashMap<String, Set<String>>();

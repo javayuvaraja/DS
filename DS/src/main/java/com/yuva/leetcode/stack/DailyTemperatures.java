@@ -24,15 +24,19 @@ Each temperature will be an integer in the range [30, 100].
  *
  */
 public class DailyTemperatures {
-
-	 public int[] dailyTemperatures(int[] T) {
-		 int []result =  new int [T.length];
-		 Stack<Integer> tempStack = new Stack<>();
-		 for (int i = 0; i < T.length; i++) {
-			 while (!tempStack.isEmpty() && T[tempStack.peek()] < T[i]) {
-				 result[tempStack.peek()] = i - tempStack.pop(); 
+	
+	 /*
+	  * Find next greater element in the array
+	  */
+	 public int[] dailyTemperatures(int[] temperatures) {
+		 int []result =  new int [temperatures.length];
+		 Stack<Integer> stack = new Stack<>();
+		 for (int i = 0; i < temperatures.length; i++) {
+			 while (!stack.isEmpty() && 
+					 temperatures[stack.peek()] < temperatures[i]) { // current temp is warmer than peek then pop from stack
+				 result[stack.peek()] = i - stack.pop(); 
 			 }
-			 tempStack.push(i);
+			 stack.push(i);
 		 }
 		 return result;
 	 }

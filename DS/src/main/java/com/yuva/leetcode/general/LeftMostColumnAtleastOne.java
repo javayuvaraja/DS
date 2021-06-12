@@ -55,6 +55,9 @@ public class LeftMostColumnAtleastOne {
         for (int row = 0; row < rowLen; row++) {
             min = Math.min(min, 
             		binarySearch(binaryMatrix, row, Math.min(colLen, min)));
+            if (min ==0) {
+            	return 0;
+            }
         }
         return min == Integer.MAX_VALUE ? -1 : min;
     }

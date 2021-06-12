@@ -35,7 +35,7 @@ public class RandomPickWithWeight {
 		int left = 0, right = len - 1;
 		// search position
 		while (left < right) {
-			int mid = left + (right - left) / 2;
+			int mid = left + right / 2;
 			if (wSums[mid] == randomNum)
 				return mid;
 			else if (wSums[mid] < randomNum)

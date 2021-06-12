@@ -32,6 +32,8 @@ Example 3:
 Input: s = "pbbcggttciiippooaais", k = 2
 Output: "ps"
 
+Last 6 months : Bloomberg 34, Facebook 10, Amazon 6, Microsoft 3, Google 2, Goldman Sachs 2, Roblox 2, ByteDance 2
+
  * @author Yuvaraja Kanagarajan
  *
  */

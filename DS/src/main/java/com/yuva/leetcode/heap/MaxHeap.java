@@ -1,11 +1,35 @@
 package com.yuva.leetcode.heap;
 
-public class MinHeap {
+/**
+ * Example of Min Heap:
+ 
+         3
+      /     \
+     5       9
+   /   \    /  \
+  6     8  20   10
+ /  \   /
+12   18 9 
+    
+ Max Heap 
+ 
+          20
+       /    \
+     18      10
+   /    \    /  \
+  12     9  9    3
+ /  \   /
+5    6 8 
+
+ * @author Yuvaraja Kanagarajan
+ *
+ */
+public class MaxHeap {
 	private int[] heapArr;
 	private int heapSize;
 	private int[] dataArr;
 
-	public MinHeap (int[] data) {
+	public MaxHeap (int[] data) {
 		this.heapArr = new int[data.length];
 		dataArr = data;
 		heapSize = 0;

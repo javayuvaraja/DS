@@ -1,6 +1,7 @@
 package com.yuva.leetcode.heap;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +43,7 @@ public class TopKFrequentWords {
 			countMap.put(word, countMap.getOrDefault(word, 0)+1);
 		}
 		
-		PriorityQueue<Map.Entry<String, Integer>> heap = new PriorityQueue<>(new Comparator<Map.Entry<String, Integer>>() {
+		PriorityQueue<Map.Entry<String, Integer>> heap = new PriorityQueue<>(k, new Comparator<Map.Entry<String, Integer>>() {
 			@Override
 			public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
 				
@@ -61,4 +62,31 @@ public class TopKFrequentWords {
 		}
 		return result;
     }
+	
+	// Another implementation is bucket sort
+	
+	 public List<String> topKFrequent1(String[] words, int k) {
+	        HashMap<String, Integer> map = new HashMap<>();
+	        int max = 0;
+	        for (String w: words) {
+	            map.put(w, map.getOrDefault(w, 0) + 1);
+	            max = Math.max(max, map.get(w));
+	        }
+	        List<String>[] bucket = new ArrayList[max + 1];
+	        for (Map.Entry<String, Integer> entry: map.entrySet()) {
+	            int fre = entry.getValue();
+	            if (bucket[fre] == null) {
+	                bucket[fre] = new ArrayList<>();
+	            }
+	            bucket[fre].add(entry.getKey());
+	        }
+	        List<String> res = new ArrayList<>();
+	        for (int i = max; i >= 0 && res.size() < k; i--) {
+	            if (bucket[i] != null) {
+	                Collections.sort(bucket[i]);
+	                res.addAll(bucket[i]);
+	            }
+	        }
+	        return res.subList(0, k);
+	    }
 }

@@ -61,7 +61,7 @@ public class AllPathsFromSourceToTarget {
 	private void dfs (List<List<Integer>> result,  int start, int target, 
 			List<Integer> currList, int[][]graph) {
 		// if no neighbors
-		if (graph[start].length == 0) {
+		if (graph[start].length == 0 || start == target) {
 			if (start == target) {
 				result.add(new ArrayList<Integer>(currList));
 			}

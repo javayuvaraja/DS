@@ -1,10 +1,23 @@
 package com.yuva.leetcode.linkedlist;
 
+/**
+2. Add Two Numbers
+
+You are given two non-empty linked lists representing two non-negative integers. 
+The digits are stored in reverse order, and each of their nodes contains a single digit. 
+Add the two numbers and return the sum as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+ 
+ * @author Yuvaraja Kanagarajan
+ *
+ */
 public class AddTwoNumberI {
 
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		ListNode result = new ListNode(0);
-		ListNode prev = result;
+		ListNode dummy = new ListNode(0);
+		ListNode prev = dummy;
 		int carry =0;
 		while (l1!=null || l2!=null || carry > 0) {
 			int sum = carry;
@@ -17,7 +30,7 @@ public class AddTwoNumberI {
 			l1 = l1!=null ? l1.next : null;
 			l2 = l2!=null ? l2.next : null;
 		}
-		return result.next;
+		return dummy.next;
 	}
 	
 	public static void main(String[] args) {

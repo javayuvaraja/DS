@@ -8,7 +8,7 @@ public class WildcardPatternMatching {
 		while (strIndex < str.length()) {
 			// advancing both pointers
 			if (patternIndex < pattern.length() && 
-					(pattern.charAt(patternIndex) == '?' || 
+					(pattern.charAt(patternIndex) == '?' ||  // pattern is question mark or both are same character then move both
 					str.charAt(strIndex) == pattern.charAt(patternIndex))) {
 				strIndex++;
 				patternIndex++;
@@ -69,7 +69,7 @@ public class WildcardPatternMatching {
 		String pattern = "x?y*z";
 		String text = "xaylmz";
 		WildcardPatternMatching obj = new WildcardPatternMatching();
-		obj.comparison(text, pattern);
+		System.out.println(obj.comparison(text, pattern));
 		
 	}
 }

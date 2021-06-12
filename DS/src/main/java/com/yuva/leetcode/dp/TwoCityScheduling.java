@@ -1,5 +1,6 @@
 package com.yuva.leetcode.dp;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
@@ -28,6 +29,8 @@ Output: 1859
 Example 3:
 Input: costs = [[515,563],[451,713],[537,709],[343,819],[855,779],[457,60],[650,359],[631,42]]
 Output: 3086
+
+Freq : Bloomberg 15 Roblox 4 DoorDash 3 Wish 2
 
  * @author Yuvaraja Kanagarajan
  *
@@ -84,8 +87,23 @@ public class TwoCityScheduling {
 		return totalCost;
 	}
 	
+	public static int twoCitySchedCost2(int[][] costs) {
+        int N = costs.length/2;
+        int[] refund = new int[N * 2];
+        int minCost = 0, index = 0;
+        for(int[] cost : costs){
+            refund[index++] = cost[1] - cost[0];
+            minCost += cost[0];
+        }
+        Arrays.sort(refund);
+        for(int i = 0; i < N; i++){
+            minCost += refund[i];
+        }
+        return minCost;
+    }
 	
 	public static void main(String[] args) {
+		//int costs[][]= {{10,20},{30,200},{400,50},{30,20}};
 		int costs[][]= {{10,20},{30,200},{400,50},{30,20}};
 		System.out.println(twoCitySchedCost(costs));
 		System.out.println(twoCitySchedCost1(costs));

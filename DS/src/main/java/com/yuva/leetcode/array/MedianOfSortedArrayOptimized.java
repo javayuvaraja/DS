@@ -19,8 +19,8 @@ the median index in a merged array.. Then return the median element.
 	                
 	        int medianIndex = (m+n)/2;
 	        
-	        double median1 = (m>0) ? nums1[0]: nums2[0];  //extra variables to store the median
-	        double median2 = median1;
+	        double median1 = (m>0) ? nums1[0]: nums2[0];  //extra variables to store the median, second highest
+	        double median2 = median1; // highest
 	        
 	        while(nums1Ptr < m && nums2Ptr < n && ((nums1Ptr+nums2Ptr) <= medianIndex) ){
 	            if(nums1[nums1Ptr] < nums2[nums2Ptr]){

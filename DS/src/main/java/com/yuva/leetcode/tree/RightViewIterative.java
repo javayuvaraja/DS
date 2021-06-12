@@ -23,7 +23,7 @@ public class RightViewIterative {
             
             while (size-- > 0){
                 TreeNode cur = queue.poll();
-                if (size == 0) {
+                if (size == 0) { // for checking whether the current node is last node of the current level
                     res.add(cur.val);
                 }
                 if (cur.left != null)

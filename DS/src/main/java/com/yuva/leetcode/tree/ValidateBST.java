@@ -18,26 +18,24 @@ Both the left and right subtrees must also be binary search trees.
 public class ValidateBST {
 
 	public boolean isValidBST(TreeNode root) {
-		int minVal = Integer.MIN_VALUE;
+		if (root == null)
+			return true;
 		Stack<TreeNode> stack = new Stack<>();
-		TreeNode currNode = root;
-		while (currNode != null || !stack.isEmpty()) {
-			stack.push(currNode);
-			if (currNode.val < minVal) {
+		TreeNode pre = null;
+		while (root != null || !stack.isEmpty()) {
+			while (root != null) {
+				stack.push(root);
+				root = root.left;
+			}
+			root = stack.pop();
+			if (pre != null && root.val <= pre.val)
 				return false;
-			}
-
-			if (currNode.left != null) {
-				currNode = currNode.left;
-			} else {
-				minVal = stack.pop().val;
-			}
-
+			pre = root;
+			root = root.right;
 		}
-
 		return true;
 	}
-	
+
 	public boolean isValidBSTRecursion(TreeNode root) {
         return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }

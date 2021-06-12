@@ -3,6 +3,16 @@ package com.yuva.leetcode.stack;
 import java.util.Deque;
 import java.util.LinkedList;
 
+/**
+84. Largest Rectangle in Histogram
+
+Given an array of integers heights representing the histogram's bar height where the width of each bar is 1, 
+return the area of the largest rectangle in the histogram.
+
+ 
+ * @author Yuvaraja Kanagarajan
+ *
+ */
 public class MaxHistogram {
 
     public int maxHistogram(int input[]){

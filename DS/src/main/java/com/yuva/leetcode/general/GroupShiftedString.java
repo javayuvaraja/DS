@@ -39,7 +39,7 @@ public class GroupShiftedString {
 			}
 		}
 		List<List<String>> result = new ArrayList<>();
-		for (Map.Entry e : table.entrySet()) {
+		for (Map.Entry<String, List<String>> e : table.entrySet()) {
 			List<String> l = (List<String>) e.getValue();
 			Collections.sort(l);
 			result.add(l);
@@ -62,6 +62,6 @@ public class GroupShiftedString {
 		String str[]= {"abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"};
 		GroupShiftedString obj = new GroupShiftedString();
 		List<List<String>> result = obj.groupStrings(str);
-		
+		System.out.println(result);
 	}
 }

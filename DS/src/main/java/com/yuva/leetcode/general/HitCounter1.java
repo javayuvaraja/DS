@@ -40,6 +40,7 @@ counter.getHits(301);
  */
 public class HitCounter1 {
 
+	// How do you handle multi threading over here atomic integer array
 	int []hits = new int[300];
 	int []timestamps = new int[300];
 	
@@ -57,7 +58,7 @@ public class HitCounter1 {
 	int getHits(int timestamp) {
 	    int res = 0;
 	    for (int i = 0; i < 300; ++i) {
-	        if (timestamp - timestamps[i] < 300) {
+	        if (timestamp - timestamps[i] < 300) { // checking with in 300 seconds
 	            res += hits[i];
 	        }
 	    }

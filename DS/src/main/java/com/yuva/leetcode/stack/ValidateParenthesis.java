@@ -1,6 +1,8 @@
 package com.yuva.leetcode.stack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -36,6 +38,16 @@ Example 5:
 Input: s = "{[]}"
 Output: true
 
+
+Follow Up:
+
+Imagine you know have not only three types of parenthesis, but a huge amount of different types:
+"<>", "aA", "\ /", "bB", ..., where every pair corresponds to open and closed parenthesis. How would you solve it ?
+
+int[] positionsOpen = new int[256]
+
+Using Map <Open character, Close Character>
+
  * @author Yuvaraja Kanagarajan
  *
  */
@@ -46,11 +58,17 @@ public class ValidateParenthesis {
 		map.put('{', '}');
 		map.put('[', ']');
 		map.put('(', ')');
+		List<Character> closedParenthesis = new ArrayList<>();
+		closedParenthesis.add(')');
+		closedParenthesis.add('}');
+		closedParenthesis.add(']');
+		
 		Stack<Character> stack = new Stack<>();
 		for (char c : s.toCharArray()) {
 			if (map.containsKey(c)) {
 				stack.push(c);
-			} else if (c == ')' || c == '}' || c == ']') {
+			//} else if (c == ')' || c == '}' || c == ']') {
+			} else if (closedParenthesis.contains(c)) {
 				if (stack.isEmpty() || map.get(stack.pop()) != c)
 					return false;
 			}

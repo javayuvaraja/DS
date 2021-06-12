@@ -19,7 +19,14 @@ Determine the perimeter of the island.
  *
  */
 public class IslandPerimeter {
-
+	
+	/**
+	 * 	Loop over the matrix and count the number of islands;
+		if the current dot is an island, count if it has any right neighbour or down neighbour;
+		the result is islands * 4 - neighbours * 2
+	 * @param grid
+	 * @return
+	 */
 	public int islandPerimeter(int[][] grid) {
 		int islands = 0, neighbours = 0;
 

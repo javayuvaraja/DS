@@ -25,7 +25,7 @@ public class ReadNCharactersRead4II {
 	public int read(char[] buf, int n) {
 		int total = 0;
 		while (total < n) {
-			if (tmpPtr == 0) {  // all the read values returned so read it from the file
+			if (tmpPtr == 0) {  // all the prev read values returned so read it from the file
 				tmpCnt = read4(temp); 
 			}
 

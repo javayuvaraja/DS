@@ -41,13 +41,13 @@ public class SlidingWindowMaximum {
 				deque.pollFirst();
 			}
 
-			// remove smaller number than the current one
+			// remove smaller number than the current one in the current window
 			while (!deque.isEmpty() && nums[deque.peekLast()] < nums[currIndex]) {
 				deque.pollLast();
 			}
 
 			deque.offerLast(currIndex);
-			if (currIndex >= k - 1) {
+			if (currIndex >= k - 1) { // result starts from k
 				result[resultIndex++] = nums[deque.peek()];
 			}
 		}

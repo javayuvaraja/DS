@@ -9,7 +9,7 @@ import java.util.Set;
  * @author Yuvaraja Kanagarajan
  *
  */
-public class LowestCommonAncestorII {
+public class LowestCommonAncestorWithParent {
 	
 	/**
 	 * Solution 1 :  With hash, store the path of the one node to root.

@@ -30,15 +30,15 @@ public class WordLadder {
 					for (int ch='a'; ch <= 'z'; ch++) {
 						charArr[j] = (char)ch;
 						String newWord = new String(charArr);
-						if (wordsSet.contains(newWord) && !visitedWords.contains(newWord)) {
 							if (newWord.equals(endWord)) {
+								if (wordsSet.contains(newWord) && !visitedWords.contains(newWord)) {
 								return level;
 							}
 							queue.offer(newWord);
 							visitedWords.add(newWord);
 						}
-						 charArr[j] = currChar;
  					}
+					charArr[j] = currChar;
 				}
 			}			
 		}

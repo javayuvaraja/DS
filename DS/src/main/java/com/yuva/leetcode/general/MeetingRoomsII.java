@@ -12,6 +12,8 @@ import java.util.PriorityQueue;
  * Example 1: Input: [[0, 30],[5,10],[15, 20]] 
  * Output: 2 Example 2: Input: [[7,10],[2,4]] Output: 1
  * 
+ * Freq : Amazon 26 Bloomberg 20 Google 12 Microsoft 10 Facebook 9 ByteDance 8 Yandex 5 Uber 4 
+ *        eBay 4 Twitter 3 Oracle 3  Adobe 3 Walmart Labs 3 Visa 2 tiktok 2
  * @author Yuvaraja Kanagarajan
  *
  */
@@ -43,30 +45,42 @@ public class MeetingRoomsII {
 		return count;
 	}
 	
-	
-	public int minMeetingRooms1(int[][] intervals) {
-		// Sorting based on the start time
-		int start = 0;
-		int end = 1;
-		Arrays.sort(intervals, Comparator.comparing((int[] interval) -> interval[end]));
-		int endIndex = 0;
-		int required = 1;
-		for (int i =1; i < intervals.length; i++) {
-			if (!(intervals[i][start] >= intervals[endIndex][end])) {
-				required++;
-			} else {
-				endIndex++;
-			}
-		}
-
-		return required;
-	}
+	/**
+	 * 1. Sort by start time
+	 * 2. Sort by end time
+	 * 
+	 * When new meeting comes checks the whether any rooms avaiable based on the end time
+	 * @param intervals
+	 * @return
+	 */
+	public int minMeetingRooms(Interval[] intervals) {
+        int[] starts = new int[intervals.length];
+        int[] ends = new int[intervals.length];
+        for(int i=0; i<intervals.length; i++) {
+            starts[i] = intervals[i].start;
+            ends[i] = intervals[i].end;
+        }
+        Arrays.sort(starts);
+        Arrays.sort(ends);
+        int rooms = 0;
+        int endsItr = 0;
+        for(int i=0; i<starts.length; i++) {
+            if(starts[i] < ends[endsItr]) { // checking the end time index is greater than the current time, if increase the meeting room.
+                rooms++;
+            }  else {
+                endsItr++;
+            }
+        }
+        return rooms;
+    }
 	
 	public static void main(String[] args) {
-		int [][]intervals =  new int[][] {{0, 30},{5,10},{15, 20}, {10, 15}, {20, 45}};
+		//int [][]intervals =  new int[][] {{0, 30},{5,10},{15, 20}, {10, 15}, {20, 45}};
+
+		int [][]intervals = new int[][] {{2,15},{36,45},{9,29},{16,23},{4,9}};
 		MeetingRoomsII obj = new MeetingRoomsII();
 		System.out.println(obj.minMeetingRooms(intervals));
-		System.out.println(obj.minMeetingRooms1(intervals));
+		//System.out.println(obj.minMeetingRooms(intervals));
 		
 	}
 }

@@ -28,6 +28,11 @@ package com.yuva.leetcode.tree;
  */
 public class PopulateNextPointerII {
 
+	// We can do with level order traversal
+	
+	/*
+	 *	This solution without additional space 
+	 */
 	public void populateNext (TreeLinkNode root) {
 		if (root == null) {
 			return;

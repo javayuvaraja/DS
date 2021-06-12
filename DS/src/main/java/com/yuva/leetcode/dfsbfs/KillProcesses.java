@@ -71,7 +71,7 @@ public class KillProcesses {
 		 List<Integer> ppidList = Arrays.asList(3, 0, 5, 3);
 		 
 		 KillProcesses obj = new KillProcesses();
-		 List<Integer> result = obj.killProcess(pidList, ppidList, 3);
+		 List<Integer> result = obj.killProcess(pidList, ppidList, 11);
 		 System.out.println(result);		 
 		 
 	 }

@@ -1,7 +1,7 @@
 package com.yuva.leetcode.graph;
 
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -28,7 +28,7 @@ The correct order is: "wertf".
 public class AlienDictionary {
 
 	public String alienOrder(String[] words) {
-        Map<Character, Set<Character>> graph = new HashMap<>();
+        Map<Character, Set<Character>> graph = new LinkedHashMap<>();
         int[] inDegree = new int[26];
         buildGraph(words, graph, inDegree);
         
@@ -85,14 +85,11 @@ public class AlienDictionary {
     }
     
     public static void main(String[] args) {
-    	String words[] = {
-    	  "wrt",
-    	  "wrf",
-    	  "er",
-    	  "ett",
-    	  "rftt"
-    	};
+		/*
+		 * String words[] = { "wrt", "wrf", "er", "ett", "rftt" };
+		 */
     	
+    	String words[]= {"abc", "ab"};
     	AlienDictionary obj = new AlienDictionary();
     	System.out.println(obj.alienOrder(words));
     	

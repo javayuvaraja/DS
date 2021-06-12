@@ -45,10 +45,11 @@ public class VerifyAlienDictionary {
 					break;
 				} else if (alphabet[word1Char - 'a'] > alphabet[word2Char - 'a']) { // it is not in sorted order
 					return false;
-				} else if (k == minLength - 1 && 
+				} else if (k == minLength - 1 &&  // it is for when reaching the last character in one of the string
 						words[i - 1].length() > words[i].length()) { // smaller length has to  come first condition
 					return false;
 				}
+				// if both are same character then it continues
 			}
 		}
 		return true;

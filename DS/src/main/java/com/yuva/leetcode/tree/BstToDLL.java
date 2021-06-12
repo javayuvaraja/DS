@@ -24,22 +24,23 @@ public class BstToDLL {
 		TreeNode prev= null;
 		TreeNode head = null;
 		Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
-		while (!stack.isEmpty() || root != null) {
-			while (root != null) {
-				stack.push(root);
-				root = root.left;
+		TreeNode curr = root;
+		while (!stack.isEmpty() || curr != null) {
+			while (curr != null) {
+				stack.push(curr);
+				curr = root.left;
 			}
 			
-			root = stack.pop();
+			curr = stack.pop();
 			if (prev == null) {
-				head = root;
+				head = curr;
 			} else {
-				prev.right = root;
-				root.left = prev;
+				prev.right = curr;
+				curr.left = prev;
 			}
 			
-			prev = root;
-			root = root.right;
+			prev = curr;
+			curr = curr.right;
 		}
 		prev.right = head;
 		head.left = prev;

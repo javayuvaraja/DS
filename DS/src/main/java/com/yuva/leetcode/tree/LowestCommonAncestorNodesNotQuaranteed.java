@@ -17,7 +17,7 @@ The given two nodes are not guaranteed to be in the binary tree
  * @author Yuvaraja Kanagarajan
  *
  */
-public class LowestCommonAncestorIII {
+public class LowestCommonAncestorNodesNotQuaranteed {
 
 	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode one, TreeNode two) {
 		TreeNode ans = helper(root, one, two);

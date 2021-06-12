@@ -7,6 +7,7 @@ public class SparseMatrixMultiplication {
         int [][]res = new int[A.length][B[0].length];
         boolean []rowA = new boolean[A.length];
         boolean []colB = new boolean[B[0].length];
+        
         // Checking whether first matrix row is having non zero 
         for(int i = 0 ; i < A.length; i++){
             for(int j = 0 ; j < A[0].length; j++)
@@ -41,5 +42,24 @@ public class SparseMatrixMultiplication {
             }
         }
         return res;
+    }
+	
+	
+	/*
+	 * 
+	 */
+	
+	public int[][] matrixMultiply(int[][] A, int[][] B) {
+        int m = A.length, n = A[0].length, nB = B[0].length;
+        int[][] C = new int[m][nB];
+
+        for(int i = 0; i < m; i++) {
+                for (int j = 0; j < nB; j++) {
+                    for(int k = 0; k < n; k++) {
+                         C[i][j] += A[i][k] * B[k][j];
+                    }
+                }
+        }
+        return C;  
     }
 }

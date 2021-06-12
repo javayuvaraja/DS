@@ -1,10 +1,8 @@
 package com.yuva.leetcode.general;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 
@@ -43,40 +41,34 @@ leaderboard.top(3);           // returns 141 = 51 + 51 + 39;
  */
 public class DesignLeaderBoard {
 
-    Map<Integer, Integer> scoreMap;
-    Map<Integer, Set<Integer>> playerMap;
-    public DesignLeaderBoard() {
-        scoreMap = new HashMap<>();
-        playerMap = new TreeMap<>(Collections.reverseOrder());
-    }
+	
+	Map<Integer, Integer> scoresFreqMap = new TreeMap<>(Comparator.reverseOrder());
+	Map<Integer, Integer> playersMap = new HashMap<>();
 
     public void addScore(int playerId, int score) {
-        if (scoreMap.containsKey(playerId)) {
-            int prevScore = scoreMap.get(playerId);
-            playerMap.get(prevScore).remove(playerId);
+        int oldScore = playersMap.getOrDefault(playerId, 0);
+        int newScore = oldScore + score;
+        if (oldScore > 0) {
+            scoresFreqMap.put(oldScore, scoresFreqMap.get(oldScore) - 1); // remove the old score freq
         }
-        scoreMap.put(playerId, scoreMap.getOrDefault(playerId, 0) + score);
-        playerMap.computeIfAbsent(scoreMap.get(playerId), k -> new HashSet<>()).add(playerId);
+        playersMap.put(playerId, newScore);
+        scoresFreqMap.put(newScore, scoresFreqMap.getOrDefault(newScore, 0) + 1);
     }
 
     public int top(int K) {
-        int sum = 0;
-        for (Integer key : playerMap.keySet()) {
-            int count = Math.min(K, playerMap.get(key).size());
-            sum += key * count;
-            K -= count;
-            if (K == 0) {
-                break;
+        int top = 0;
+        for (Integer score : scoresFreqMap.keySet())
+            for (int i = 0; i < scoresFreqMap.get(score); i++) {
+                top += score;
+                if (--K == 0)
+                    return top;
             }
-        }
-        return sum;
+        return top;
     }
 
     public void reset(int playerId) {
-        int prevScore = scoreMap.get(playerId);
-        playerMap.get(prevScore).remove(playerId);
-        scoreMap.put(playerId, 0);
-        playerMap.computeIfAbsent(0, k -> new HashSet<>()).add(playerId);
+        int score = playersMap.remove(playerId);
+        scoresFreqMap.put(score, scoresFreqMap.get(score) - 1);
     }
 }
 
