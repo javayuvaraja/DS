@@ -18,26 +18,26 @@ package com.yuva.leetcode.general;
  */
 public class ReadNCharactersRead4II {
 
-	private int tmpPtr = 0;
-	private int tmpCnt = 0;
+	private int processed = 0;
+	private int retrieved = 0;
 	private char[] temp = new char[4];
 
 	public int read(char[] buf, int n) {
 		int total = 0;
 		while (total < n) {
-			if (tmpPtr == 0) {  // all the prev read values returned so read it from the file
-				tmpCnt = read4(temp); 
+			if (processed == 0) {  // all the prev read values returned so read it from the file
+				retrieved = read4(temp); 
 			}
 
-			if (tmpCnt == 0) { // no more chars
+			if (retrieved == 0) { // no more chars
 				break;
 			}
 			
-			while (total < n && tmpPtr < tmpCnt) { // add the last leftover and current reading also
-				buf[total++] = temp[tmpPtr++];
+			while (total < n && processed < retrieved) { // add the last leftover and current reading also
+				buf[total++] = temp[processed++];
 			}
-			if (tmpCnt == tmpPtr) { // if all the temp buffer read then reset it to zero
-				tmpPtr = 0 ;
+			if (retrieved == processed) { // all retrieved items are processed, so make processed to zero
+				processed = 0 ;
 			}
 		}
 		return total;

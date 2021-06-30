@@ -48,8 +48,7 @@ public class InsertInCyclicSortedList {
 				return newNode;
 			}
 			
-			// case 2 : find the max node
-			
+			// case 2 : find the max node			
 			ListNode max = head;
 			
 			while (max.next!=head && // for break the cycle

@@ -41,4 +41,24 @@ public class ClosestBSTValue {
 
         return res;
     }
+	
+	
+	public int ClosestValue(TreeNode root, double target) {
+		if (root == null)
+			return 0;
+
+		int val = root.val;
+		double minDiff = Math.abs(target - val);
+		TreeNode node = root;
+		while (node != null) {
+			double diff = Math.abs(target - node.val);
+			if (diff <= minDiff) {
+				minDiff = diff;
+				val = node.val;
+			}
+			node = target <= node.val ? node.left : node.right;
+		}
+
+		return val;
+	}
 }

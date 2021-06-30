@@ -7,7 +7,8 @@ import java.util.Queue;
 /**
 
 A sequence of task given where each task identified by a unique id. 
-There is cool down period to be observed before executing same task again. Find the execution time for the task sequence.
+There is cool down period to be observed before executing same task again. 
+Find the execution time for the task sequence.
 
 Example:
 Task sequence: 1 2 1 2

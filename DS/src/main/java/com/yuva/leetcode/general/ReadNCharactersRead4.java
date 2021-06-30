@@ -20,19 +20,21 @@ public class ReadNCharactersRead4 {
 	public int read(char[] buf, int n) {
 		boolean eof = false; // end of file flag
 		int total = 0; // total bytes have read
-		char[] tmp = new char[4]; // temp buffer
+		int maxBuffer = 4;
+		char[] tmp = new char[maxBuffer]; // temp buffer
 
 		while (!eof && total < n) {
-			int count = read4(tmp);
+			int retrieved = read4(tmp);
 
 			// check if it's the end of the file
-			eof = count < 4;
-
+			eof = retrieved < maxBuffer;
+			
+			int remaining = n-total;
 			// get the actual count
-			count = Math.min(count, n - total);
+			retrieved = Math.min(retrieved, remaining);
 
 			// copy from temp buffer to buf
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < retrieved; i++)
 				buf[total++] = tmp[i];
 		}
 

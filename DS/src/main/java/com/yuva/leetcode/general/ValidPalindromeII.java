@@ -46,4 +46,27 @@ public class ValidPalindromeII {
         
         return true;
     }
+    
+    
+    public boolean validPalindrome1(String s) {
+        int start = 0;
+        int end = s.length()-1;
+        char ch[] = s.toCharArray();
+        
+        int diff = 0 ;
+        while (start < end && diff < 2) {
+            if (ch[start] == ch[end]) {
+                start++;
+                end--;
+            } else {
+                diff++;
+                if (ch[end-1] == ch[start]) {
+                    end--;
+                } else {
+                    start++;
+                }
+            }
+        }
+        return diff < 2;
+    }
 }

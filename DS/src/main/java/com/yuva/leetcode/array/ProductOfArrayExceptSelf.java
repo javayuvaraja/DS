@@ -17,25 +17,45 @@ Output: [24,12,8,6]
  *
  */
 public class ProductOfArrayExceptSelf {
-	 public int[] productExceptSelf(int[] nums) {
-	        int length = nums.length;
-	        int left[] = new int[length];
-	        int right[] = new int[length];
-	        Arrays.fill(left, 1);
-	        Arrays.fill(right, 1);
-	        
-	        for (int i = 1; i < length; i++) {
-	            left[i] = left[i-1]* nums[i-1];
-	        }
-	        
-	        for (int i= length-2; i>=0;  i--) {
-	            right[i]= right[i+1] * nums[i+1];
-	        }
-	        
-	        int result[] = new int[length];
-	        for (int i = 0; i < length; i++) {
-	            result[i] = left[i]* right[i];
-	        }
-	        return result;
-	    }
+	public int[] productExceptSelf(int[] nums) {
+		int length = nums.length;
+		int left[] = new int[length];
+		int right[] = new int[length];
+		Arrays.fill(left, 1);
+		Arrays.fill(right, 1);
+
+		for (int i = 1; i < length; i++) {
+			left[i] = left[i - 1] * nums[i - 1];
+		}
+
+		for (int i = length - 2; i >= 0; i--) {
+			right[i] = right[i + 1] * nums[i + 1];
+		}
+
+		int result[] = new int[length];
+		for (int i = 0; i < length; i++) {
+			result[i] = left[i] * right[i];
+		}
+		return result;
+	}
+	
+	/**
+	 * Without 1 extra space
+	 * @param nums
+	 * @return
+	 */
+	public int[] productExceptSelf1(int[] nums) {
+		int n = nums.length;
+		int[] res = new int[n];
+		res[0] = 1;
+		for (int i = 1; i < n; i++) {
+			res[i] = res[i - 1] * nums[i - 1];
+		}
+		int right = 1;
+		for (int i = n - 1; i >= 0; i--) {
+			res[i] *= right;
+			right *= nums[i];
+		}
+		return res;
+	}
 }

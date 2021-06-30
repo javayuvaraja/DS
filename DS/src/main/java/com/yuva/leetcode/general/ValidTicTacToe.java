@@ -38,10 +38,12 @@ public class ValidTicTacToe {
 		owin = rows[0] == -3 || rows[1] == -3 || rows[2] == -3 || cols[0] == -3 || cols[1] == -3 || cols[2] == -3
 				|| diag == -3 || antidiag == -3;
 
-		if (xwin && turns == 0 || owin && turns == 1) { // X can win in turns 1 because x first starts, the same applicable to Owin in turns zero 0
-			return false;
-		}
-		return (turns == 0 || turns == 1) && (!xwin || !owin);
+		if (turns < 0 || turns > 1 || turns == 0 && xwin || // X can win in turns 1 because x first starts
+				turns == 1 && owin) { // the same applicable to O win in turns zero 0
+																
+	        return false;
+	    }
+		return true;
 	}
 
 }

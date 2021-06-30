@@ -1,5 +1,7 @@
 package com.yuva.leetcode.stack;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -52,5 +54,31 @@ public class BuildingWithOceanView {
             result[i] = stack.pop();
         }
         return result;
+    }
+	
+	/** 
+	 * Without stack
+	 * 
+	 * Logic : Traverse it from end. If last is greater than the current then this building wont be in the result.
+	 * 
+	 * @param heights
+	 * @return
+	 */
+	public int[] findBuildings1(int[] heights) {
+        List<Integer> ls = new ArrayList<>();
+        int last = Integer.MIN_VALUE;
+        for (int i = heights.length - 1; i >= 0; i--) {
+            if (heights[i] > last) {
+                ls.add(i);
+                last = heights[i];
+            }
+        }
+        
+        int index = 0;
+        int[] res = new int[ls.size()];
+        for (int i = ls.size() - 1; i >= 0; i--)
+            res[index++] = ls.get(i);
+        
+        return res;
     }
 }

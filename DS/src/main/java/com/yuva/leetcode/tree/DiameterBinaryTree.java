@@ -37,8 +37,7 @@ public class DiameterBinaryTree {
 	        // since we are doing postorder traversal)
 	        diameter.set(Math.max(diameter.get(), max_diameter));
 	 
-	        // it is important to return the height of the subtree rooted at the
-	        // current node
+	        // it is important to return the height of the subtree rooted at the current node
 	        return Math.max(left_height, right_height) + 1;
 	    }
 	 

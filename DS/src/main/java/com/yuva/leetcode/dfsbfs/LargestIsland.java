@@ -55,6 +55,7 @@ public class LargestIsland {
                     //We use a set to avoid repeatly adding islands with the same color
                     Set<Integer> set = new HashSet<>();
                     //If current island is at the boundary, we add 0 to the set, whose value is 0 in the map
+                    // Adding the color of the each neighbor to the set
                     set.add(i > 0 ? grid[i - 1][j] : 0);
                     set.add(i < n - 1 ? grid[i + 1][j] : 0);
                     set.add(j > 0 ? grid[i][j - 1] : 0);

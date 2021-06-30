@@ -47,35 +47,28 @@ public class LeftMostColumnAtleastOne {
 	 * @return
 	 */
 	
-	public int leftMostColumnWithOne1(BinaryMatrix binaryMatrix) {
-        List<Integer> dimension = binaryMatrix.dimensions();
-        int rowLen = dimension.get(0);
-        int colLen = dimension.get(1);
-        int min = Integer.MAX_VALUE;
-        for (int row = 0; row < rowLen; row++) {
-            min = Math.min(min, 
-            		binarySearch(binaryMatrix, row, Math.min(colLen, min)));
-            if (min ==0) {
-            	return 0;
+	public int leftMostColumnWithOne2(BinaryMatrix binaryMatrix) {
+        List<Integer> dim = binaryMatrix.dimensions();
+        int rowLen = dim.get(0);
+        int colLen = dim.get(1);
+        int leftMost = colLen;
+        
+        for (int i = 0; i < rowLen; i++) {
+            int left = 0;
+            int right = leftMost; 
+            while (left < right) {
+                int mid = left + (right - left)/2;
+                if (binaryMatrix.get(i, mid) == 1) {
+                    right = mid;
+                }
+                else {
+                    left = mid+1;
+                }
             }
+            leftMost = left;
         }
-        return min == Integer.MAX_VALUE ? -1 : min;
-    }
-	
-    private int binarySearch(BinaryMatrix matrix, int row, int col) {
-        if (matrix.get(row, col - 1) == 0) return Integer.MAX_VALUE;
-        if (matrix.get(row, 0) == 1) return 0;
-        int lo = 0;
-        int hi = col - 1;
-        while (lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
-            if (matrix.get(row, mid) == 1) {
-              hi = mid - 1;
-            } else {
-              lo = mid + 1;
-            }
-        }
-        return lo;
+        
+        return leftMost == colLen ? -1 : leftMost;
     }
 }
 

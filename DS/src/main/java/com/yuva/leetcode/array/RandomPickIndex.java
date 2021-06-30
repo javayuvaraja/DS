@@ -39,7 +39,9 @@ public class RandomPickIndex {
 
 	Map<Integer, List<Integer>> indexMap = new HashMap<>();
     Random random;
+    int nums[];
     public RandomPickIndex(int[] nums) {
+    	this.nums = nums;
         random = new Random();
         for (int i=0; i <nums.length ; i++) {
             indexMap.putIfAbsent(nums[i], new ArrayList<Integer>());
@@ -56,6 +58,23 @@ public class RandomPickIndex {
  
         int index = random.nextInt(indexList.size());
         return indexList.get(index);
+    }
+    
+    public int pickReservoirSampling(int target) {
+        random = new Random();
+        int count = 0;
+        int result = 0;
+        
+        for (int i=0; i < nums.length; i++) {
+        	if (nums[i]== target) {
+        		count++;
+        	}
+        	if (random.nextInt(count) == 0) {
+        		result =i;
+        	}
+        }
+        return result;
+       
     }
     
     public static void main(String[] args) {

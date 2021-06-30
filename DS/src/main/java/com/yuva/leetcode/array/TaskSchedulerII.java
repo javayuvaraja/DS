@@ -34,19 +34,19 @@ public class TaskSchedulerII {
 	 * @para m n
 	 * @return
 	 */
-	public int leastInterval(char[] tasks, int n) {
+	public int leastInterval(char[] tasks, int cooldown) {
 		int len = tasks.length;
 		int[] count = new int[26];
-		int max = 0, maxNum = 0;
+		int maxFreqCount = 0, maxFreqElementCount = 0;
 		for (char c : tasks) {
 			count[c - 'A']++;
-			if (count[c - 'A'] > max) {
-				max = count[c - 'A'];
-				maxNum = 1;
-			} else if (count[c - 'A'] == max) {
-				maxNum++;
+			if (count[c - 'A'] > maxFreqCount) {
+				maxFreqCount = count[c - 'A'];
+				maxFreqElementCount = 1;
+			} else if (count[c - 'A'] == maxFreqCount) {
+				maxFreqElementCount++;
 			}
 		}
-		return Math.max(len, (max - 1) * (n + 1) + maxNum);
+		return Math.max(len, (maxFreqCount - 1) * (cooldown + 1) + maxFreqElementCount);
 	}
 }

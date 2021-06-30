@@ -64,6 +64,9 @@ public class WordBreakII {
 	    return res;
 	}
 	
+	/**
+	 * Below implementation handles the dictionary too large
+	 */
 	HashMap<String,List<String>> map = new HashMap<String,List<String>>();
     public List<String> wordBreak1(String s, Set<String> wordDict) {
         List<String> res = new ArrayList<String>();

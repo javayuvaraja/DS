@@ -7,7 +7,8 @@ import java.util.Queue;
 
 public class MinimumPushBoxToTarget {
 	int[][] moves = new int[][] { { 0, -1 }, { 0, 1 }, { -1, 0 }, { 1, 0 } };
-
+	int boxX = 0, boxY=1, storeKeeperX = 2, storeKeeperY=3;
+	int X=0, Y=1;
 	public int minPushBox(char[][] grid) {
 		int[] box = null, target = null, storekeeper = null;
 		int n = grid.length, m = grid[0].length;
@@ -24,47 +25,48 @@ public class MinimumPushBoxToTarget {
 		}
 	
 		Queue<String> q = new LinkedList<>(); // stores the position of box and store keeper
-		Map<String, Integer> dis = new HashMap<>();
+		Map<String, Integer> distanceMap = new HashMap<>();
 		String start = encode(box[0], box[1], storekeeper[0], storekeeper[1]);
-		dis.put(start, 0);
+		distanceMap.put(start, 0);
 		q.offer(start);
 		int result = Integer.MAX_VALUE;
 		while (!q.isEmpty()) {
-			String currPos = q.poll();
-			int[] du = decode(currPos);
-			if (dis.get(currPos) >= result)
+			String currItem = q.poll();
+			int[] locationArr = decode(currItem);
+			if (distanceMap.get(currItem) >= result)
 				continue;
-			if (du[0] == target[0] && du[1] == target[1]) {
-				result = Math.min(result, dis.get(currPos));
+			if (locationArr[boxX] == target[0] && locationArr[boxY] == target[1]) {
+				result = Math.min(result, distanceMap.get(currItem));
 				continue;
 			}
-			int[] boxLocation = new int[] { du[0], du[1] };
-			int[] storeKeeperLocation = new int[] { du[2], du[3] };
+			int[] boxLocation = new int[] { locationArr[boxX], locationArr[boxY] };
+			int[] storeKeeperLocation = new int[] { locationArr[storeKeeperX], locationArr[storeKeeperY] };
 			// move the storekeeper for 1 step
 			for (int[] move : moves) {
-				int nsx = storeKeeperLocation[0] + move[0];
-				int nsy = storeKeeperLocation[1] + move[1];
+				int nsx = storeKeeperLocation[X] + move[X];
+				int nsy = storeKeeperLocation[Y] + move[Y];
 				if (nsx < 0 || nsx >= n || nsy < 0 || nsy >= m || grid[nsx][nsy] == '#')
 					continue;
+				
 				// if it meet the box, then the box move in the same direction
-				if (nsx == boxLocation[0] && nsy == boxLocation[1]) {
+				if (nsx == boxLocation[X] && nsy == boxLocation[Y]) {
 					int nbx = boxLocation[0] + move[0];
 					int nby = boxLocation[1] + move[1];
 					if (nbx < 0 || nbx >= n || nby < 0 || nby >= m || grid[nbx][nby] == '#')
 						continue;
 					//int v = encode(nbx, nby, nsx, nsy);
 					String pos = encode(nbx, nby, nsx, nsy);
-					if (dis.containsKey(pos) && dis.get(pos) <= dis.get(currPos) + 1)
+					if (distanceMap.containsKey(pos) && distanceMap.get(pos) <= distanceMap.get(currItem) + 1)
 						continue;
-					dis.put(pos, dis.get(currPos) + 1);
+					distanceMap.put(pos, distanceMap.get(currItem) + 1);
 					q.offer(pos);
 				} else { // if the storekeeper doesn't meet the box, the position of the box do not
 							// change
 					//int v = encode(b[0], b[1], nsx, nsy);
 					String pos = encode(boxLocation[0], boxLocation[1], nsx, nsy);
-					if (dis.containsKey(pos) && dis.get(pos) <= dis.get(currPos))
+					if (distanceMap.containsKey(pos) && distanceMap.get(pos) <= distanceMap.get(currItem))
 						continue;
-					dis.put(pos, dis.get(currPos));
+					distanceMap.put(pos, distanceMap.get(currItem));
 					q.offer(pos);
 				}
 			}
