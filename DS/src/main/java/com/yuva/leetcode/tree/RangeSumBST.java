@@ -58,8 +58,14 @@ public class RangeSumBST {
 	
 	 public int rangeSumBST1(TreeNode root, int low, int high) {
 	        if (root == null) return 0; // base case.
-	        if (root.val < low) return rangeSumBST1(root.right, low, high); // left branch excluded.
-	        if (root.val > high) return rangeSumBST1(root.left, low, high); // right branch excluded.
-	        return root.val + rangeSumBST1(root.right, low, high) + rangeSumBST1(root.left, low, high); // count in both children.
+	        if (root.val < low) {
+	        	return rangeSumBST1(root.right, low, high); // left branch excluded.
+	        }
+	        if (root.val > high) {
+	        	return rangeSumBST1(root.left, low, high); // right branch excluded.
+	        }
+	        return root.val + 
+	        		rangeSumBST1(root.right, low, high) + 
+	        		rangeSumBST1(root.left, low, high); // count in both children.
 	    }
 }

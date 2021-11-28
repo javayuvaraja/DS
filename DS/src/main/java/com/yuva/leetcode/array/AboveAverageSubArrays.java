@@ -33,7 +33,7 @@ public class AboveAverageSubArrays {
 
 	class Pair {
 		int start;
-		int end;
+ 		int end;
 		 Pair(int start, int end) {
 			this.start = start;
 			this.end = end;

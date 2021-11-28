@@ -1,5 +1,10 @@
 package com.yuva.leetcode.array;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
 
 Leetcode 205. Isomorphic Strings
@@ -41,4 +46,34 @@ public class IsomorphicStrings {
         }
         return true;
     }
+	
+	public boolean isIsomorphic1 (String s, String t) {
+        Map<Character, Character> replaceMap = new HashMap<>();
+        Set<Character> valueSet = new HashSet<>();
+        
+        if (s == null) {
+        	return true;
+        }
+        
+        for (int i = 0; i < s.length(); i++) {
+        	char char1 = s.charAt(i);
+        	char char2 = t.charAt(i);
+        	if (replaceMap.containsKey(char1)) {
+        		if (replaceMap.get(char1)!= char2) {
+        			return false;
+        		}
+        	} else {
+        		if (valueSet.contains(char2)) { // this value already mapped with some other character
+        			return false;
+        		}
+        		
+        		replaceMap.put(char1, char2);
+        		valueSet.add(char2);
+        	}
+        }
+        
+        return true;
+    } 
+
 }
+ 

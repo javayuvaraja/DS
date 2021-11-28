@@ -37,7 +37,7 @@ public class InversionCount {
 		while (i<=mid) {
 			temp[k++] = arr[i++];
 		}
-		while (j<=end) {
+		while (j<=end) { 
 			temp[k++] = arr[j++];
 		}
 		
@@ -56,3 +56,4 @@ public class InversionCount {
 		 System.out.println(obj.findInversion(arr));
 	}
 }
+ 

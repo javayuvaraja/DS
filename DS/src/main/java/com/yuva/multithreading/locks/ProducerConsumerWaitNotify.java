@@ -11,7 +11,7 @@ public class ProducerConsumerWaitNotify {
 	private int count =1;
 	public void produce () {
 		synchronized (lock) {
-			while (queue.size() > MAX_SIZE) {
+			while (queue.size() >= MAX_SIZE) {
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {

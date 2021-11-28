@@ -53,41 +53,39 @@ Notes:
  */
 public class RobotRoomCleaner {
 	
-	private static final int[][] directions = {{-1, 0}, // up (prevRow)
+	private static final int[][] DIRS = {{-1, 0}, // up (prevRow)
 												{0, 1}, // right (RightCol)
 												{1, 0}, // left
 												{0, -1}}; // down
-    
-    public void cleanRoom(Robot robot) {
-        clean(robot, 0, 0, 0, new HashSet<>());
-    }
-    
-    // Direction 0- up, 1 - right, 2 - left, 3 - down 
-    
-    private void clean(Robot robot, int row, int col, int curDirection, Set<String> visited) {
-        // Cleans current cell.
-        robot.clean();
-        visited.add(row + " " + col);
-        
-        for (int newDirection = curDirection; 
-             newDirection < curDirection + 4; 
-             newDirection++) { // from one position 4 directions it will be back to same position
-            int nx = directions[newDirection % 4][0] + row;
-            int ny = directions[newDirection % 4][1] + col;
-            if (!visited.contains(nx + " " + ny) && robot.move()) {
-                clean(robot, nx, ny, newDirection % 4, visited);
-            }
-            // Changed orientation.
-            robot.turnRight();
-        }
-        
-        // Moves backward one step while maintaining the orientation.
-        robot.turnRight();
-        robot.turnRight();
-        robot.move();
-        robot.turnRight();
-        robot.turnRight();
-    }
+
+		public void cleanRoom(Robot robot) { 
+			clean(robot, 0, 0, 0, new HashSet<>());
+		}
+
+		private void clean(Robot robot, int x, int y, int curDirection, Set<String> cleaned) {
+			robot.clean();
+			cleaned.add(x + " " + y);
+
+			for (int i = 0; i < 4; i++) {
+				int nx = x + DIRS[curDirection][0];
+				int ny = y + DIRS[curDirection][1];
+				if (!cleaned.contains(nx + " " + ny) && robot.move()) {
+					clean(robot, nx, ny, curDirection, cleaned);
+					goBack(robot);
+				}
+				robot.turnRight();
+				curDirection = (curDirection + 1) % 4;
+			}
+
+		}
+
+		private void goBack(Robot robot) {
+			robot.turnRight();
+			robot.turnRight();
+			robot.move();
+			robot.turnRight();
+			robot.turnRight();
+		}
 
 }
 
