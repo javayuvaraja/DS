@@ -60,7 +60,7 @@ public class AnswerQueries {
 	                Integer val = set.ceiling(q.index); // fetching the next smallest greater number
 	                if(val==null){
 	                    arr.add(-1);
-	                }else{
+	                } else {
 	                    arr.add(val);
 	                }
 	            }

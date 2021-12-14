@@ -40,13 +40,14 @@ public class SubDomainVisitCount {
             String str[] = domain.split(" ");
         	int count = Integer.valueOf(str[0]);
             String address = str[1];
+            countMap.put(address, countMap.getOrDefault(address, 0) + count);
             for (int i = 0; i < address.length(); ++i) {
                 if (address.charAt(i) == '.') {
                     String domainName = address.substring(i + 1);
                     countMap.put(domainName, countMap.getOrDefault(domainName, 0) + count);
                 }
             }
-            countMap.put(address, countMap.getOrDefault(address, 0) + count);
+           
         }
 
         List<String> res = new ArrayList<>();
@@ -61,4 +62,6 @@ public class SubDomainVisitCount {
 		SubDomainVisitCount obj = new SubDomainVisitCount();
 		System.out.println(obj.subdomainVisits(str));
 	}
+	
 }
+

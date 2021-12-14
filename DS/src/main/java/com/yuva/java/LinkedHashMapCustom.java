@@ -318,7 +318,7 @@ class LinkedHashMapCustom<K, V> {
 /**
 * Main class- to test HashMap functionality.
 */
-public class LinkedHashMapCustomApp {
+ class LinkedHashMapCustomApp {
     
    public static void main(String[] args) {
           LinkedHashMapCustom<Integer, Integer> linkedHashMapCustom = new LinkedHashMapCustom<Integer, Integer>();
