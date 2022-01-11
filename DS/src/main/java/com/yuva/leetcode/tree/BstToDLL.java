@@ -47,4 +47,43 @@ public class BstToDLL {
 		
 		return head;
 	}
+	
+	
+	TreeNode prev = new TreeNode(0);
+	TreeNode head = null;
+    public TreeNode treeToDoublyList1(TreeNode root) {
+        if (root == null) {
+            return head;
+        }
+        inorder(root);
+        
+        TreeNode temp = head;
+        TreeNode lastNode = head;
+        while (temp!= null) {
+            lastNode = temp;
+            temp = temp.right;
+        }
+        head.left = lastNode;
+        lastNode.right = head;
+        return head;
+    }
+    
+    public void inorder(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        inorder(node.left);
+        
+        if (head == null) {
+            head = node;
+        }
+        
+		if (node != null) {
+			prev.right = node;
+			node.left = prev;
+			prev = node;
+		}
+        
+        inorder(node.right);
+    }
 }

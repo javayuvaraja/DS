@@ -5,7 +5,6 @@ import java.util.List;
 
 public class BattleshipCoordinates {
 	public static List<List<int[]>> countBattleships(char[][] board) {
-        int result = 0;
         List<List<int[]>> resultList = new ArrayList<>();
         boolean isVisited[][] = new boolean [board.length][board[0].length];
         for (int i =0; i < board.length; i++ ) {
@@ -13,7 +12,6 @@ public class BattleshipCoordinates {
                 if (board[i][j]=='X' && !isVisited[i][j]){
                 	List<int[]> temp = new ArrayList<>();
                 	temp.add(new int[] {i, j});
-                    result++;
                     isVisited[i][j]= true;
                     fillRow(board, i, j, isVisited, temp);
                     fillCol(board, i, j, isVisited, temp);

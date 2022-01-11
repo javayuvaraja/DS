@@ -25,24 +25,23 @@ public class MeetingRoomsII {
 		Arrays.sort(intervals, Comparator.comparing((int[] interval) -> interval[start]));
 		// Adding to the end time to the heap
 		PriorityQueue<Integer> heap = new PriorityQueue<>();
-		int count = 0;
+		int roomCount = 0;
 		
 		for (int[] interval : intervals) {
 			if (heap.isEmpty()) {
-				count++;
-				heap.offer(interval[end]);
+				roomCount++;
+				
 			} else {
 				if (interval[start] >= heap.peek()) {
 					heap.poll();
 				} else {
-					count++;
+					roomCount++;
 				}
-
-				heap.offer(interval[end]);
 			}
+			heap.offer(interval[end]);
 		}
 
-		return count;
+		return roomCount;
 	}
 	
 	/**

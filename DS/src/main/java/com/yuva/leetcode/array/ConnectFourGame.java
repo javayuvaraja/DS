@@ -25,10 +25,10 @@ public class ConnectFourGame {
 	    }
 	    
 	    // ascendingDiagonalCheck or bottom to top
-	    for (int i=3; i<getWidth(); i++){
-	        for (int j=0; j<getHeight()-3; j++){
-	            if (this.board[i][j] == player && this.board[i-1][j+1] == player 
-	            		&& this.board[i-2][j+2] == player && this.board[i-3][j+3] == player)
+	    for (int row=3; row < getWidth(); row++){
+	        for (int col=0; col <  getHeight()-3; col++){
+	            if (this.board[row][col] == player && this.board[row-1][col+1] == player 
+	            		&& this.board[row-2][col+2] == player && this.board[row-3][col+3] == player)
 	                return true;
 	        }
 	    }

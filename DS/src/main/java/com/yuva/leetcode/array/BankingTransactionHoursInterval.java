@@ -40,10 +40,10 @@ public class BankingTransactionHoursInterval {
 			int currInterval[] = operatingHours[i];
 
 			if (currInterval[0] <= end) { // overlap
-				end = Math.max(operatingHours[i][1], end);
+				end = Math.max(currInterval[1], end);
 			} else { // no overlap
-				start = operatingHours[i][0];
-				end = operatingHours[i][1];
+				start = currInterval[0];
+				end = currInterval[1];
 			}
 			if (transaction[0] >= start && transaction[1] <= end) {
 				return true;

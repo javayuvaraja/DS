@@ -9,7 +9,7 @@ import java.util.Comparator;
  * determine if a person could attend all meetings.
  * 
  * For example, Given [ [0, 30], [5, 10], [15, 20] ], return false.
- * 
+ *  
  * @author Yuvaraja Kanagarajan
  *
  */

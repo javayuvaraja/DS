@@ -27,7 +27,8 @@ public class BuySellStockIV {
 	  * i- no.of.transactions
 	  * j- day
 	  * T[i][j]  = Max (T[i][j-1]),   // not transacting on the day
-	  *                 prices[j] - prices[m] + T[i-1] [m] ) m=0,j-1    
+	  *                 prices[j] - prices[m] + T[i-1] [m] ) m=0,j-1    // Transacting on the jth day bought it in mth day.
+	  *                                                                 // before mthday with one less transaction 
 	  * @param k
 	  * @param prices
 	  * @return

@@ -72,4 +72,18 @@ public class MinStack {
 			return -1;
 		}
 	}
+	
+	public static void main(String[] args) {
+		MinStack obj = new MinStack();
+		obj.push(4);
+		obj.push(2);
+		obj.push(3);
+		obj.push(1);
+		System.out.println(obj.getMin());
+		obj.pop();
+		System.out.println(obj.getMin());
+		
+		
+	}
+	
 }

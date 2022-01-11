@@ -4,7 +4,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Given a binary tree where each node also stores parent pointer in addition to left and right node. Given 2 nodes, find their LCA.
+ * 1650. Lowest Common Ancestor of a Binary Tree III
+
+Given two nodes of a binary tree p and q, return their lowest common ancestor (LCA).
+
+Each node will have a reference to its parent node. The definition for Node is below:
+
+class Node {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node parent;
+}
+According to the definition of LCA on Wikipedia: "The lowest common ancestor of two nodes p and q in 
+a tree T is the lowest node that has both p and q as descendants (where we allow a node to be a descendant of itself)."
+ * Given a binary tree where each node also stores parent pointer in addition to left and right node. 
+ * Given 2 nodes, find their LCA.
  * 
  * @author Yuvaraja Kanagarajan
  *
@@ -22,7 +37,7 @@ public class LowestCommonAncestorWithParent {
 		 Set<ParentTreeNode> path = findPathToRoot(node1);
 		 
 		 //Finding the second nodes path
-		 ParentTreeNode temp = node2;
+		 ParentTreeNode temp = node2; 
 		 while (temp!=null) {
 			 if (path.contains(temp)) {
 				 return temp;

@@ -1,5 +1,7 @@
 package com.yuva.leetcode.stack;
 
+import java.util.Stack;
+
 /**
  921. Minimum Add to Make Parentheses Valid
 
@@ -51,5 +53,20 @@ public class MinimumAddToMakeValidParenthesis {
             }
         }
         return stackSize + notMatched;    
+    }
+	
+	public int minAddToMakeValid1(String s) {
+        Stack<Character> stack = new Stack<>();
+        char[] arr = s.toCharArray();
+        for (Character ch : arr) {
+            if (ch == '(') {
+                stack.push(ch);
+            } else if (!stack.isEmpty() && stack.peek() == '(') {
+                stack.pop();
+            } else {
+                stack.push(ch);
+            }
+        }
+        return stack.size();
     }
 }

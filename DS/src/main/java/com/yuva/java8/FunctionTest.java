@@ -54,4 +54,10 @@ public class FunctionTest {
                         .forEach(System.out::println);
 	}
 	
+	public static void main(String[] args) {
+		int capacity = 40;
+        int newCapacity = capacity + (capacity >> 1);
+        System.out.println(newCapacity);
+
+	}
 }
