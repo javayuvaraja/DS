@@ -30,7 +30,6 @@ public class MeetingRoomsII {
 		for (int[] interval : intervals) {
 			if (heap.isEmpty()) {
 				roomCount++;
-				
 			} else {
 				if (interval[start] >= heap.peek()) {
 					heap.poll();

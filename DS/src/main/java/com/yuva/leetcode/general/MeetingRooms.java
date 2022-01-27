@@ -21,7 +21,9 @@ public class MeetingRooms {
 				return a.start - b.start;
 			}
 		});
-
+		
+		
+		Arrays.sort(intervals, Comparator.comparing((Interval interval) -> interval.start));
 		for (int i = 1; i < intervals.length; i++) {
 			if (intervals[i].start < intervals[i-1].end) {
 				return false;

@@ -23,7 +23,7 @@ public class MergeInterval {
 
 		int start = 0;
 		int end = 1;
-		Arrays.sort(intervals, (interval1, interval2) -> Integer.compare(interval1[0], interval2[0]));
+		Arrays.sort(intervals, (interval1, interval2) -> Integer.compare(interval1[start], interval2[start]));
 
 		List<int[]> result = new ArrayList<>();
 		int prevInterval[] = intervals[0];

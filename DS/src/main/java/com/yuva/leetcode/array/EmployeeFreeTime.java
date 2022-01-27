@@ -43,9 +43,7 @@ public class EmployeeFreeTime {
 		}
 		// sorting by start time
 		Collections.sort(intervalList, (a,b)->(a.start-b.start));
-		
 		Interval prev = intervalList.get(0);
-		
 		for (int i=0; i < intervalList.size(); i++) {
 			Interval curr = intervalList.get(0);
 			// curr start is greater than prev end means, inbetween interval is free time.

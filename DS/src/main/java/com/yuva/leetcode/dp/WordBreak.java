@@ -39,11 +39,10 @@ public class WordBreak {
 
 	public boolean wordBreak(String str, List<String> wordDict) {
 		int strLength = str.length();
-		boolean result[][] = new boolean [strLength][strLength];
 		// Converting list to set for improving the performance. 
 		// checking word exists in list is o(n) but in set it is o(1)
 		Set<String> wordSet = wordDict.stream().collect(Collectors.toSet());
-		
+		boolean result[][] = new boolean [strLength][strLength];
 		for (int length=1; length <=strLength; length++) {
 			for (int start = 0; start < strLength-length+1; start++) {
 				int end = start+length-1;

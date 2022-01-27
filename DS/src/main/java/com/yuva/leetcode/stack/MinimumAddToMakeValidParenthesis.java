@@ -38,21 +38,21 @@ public class MinimumAddToMakeValidParenthesis {
 
 	public int minAddToMakeValid(String S) {
 	     
-        int stackSize = 0;
-        int notMatched = 0;
+        int open = 0;
+        int close = 0;
         for (char c : S.toCharArray()) {
             if (c == '(') {
-                stackSize++; // stack push 
+                open++; // stack push 
             }
             else if (c == ')') {
-            	if (stackSize > 0) {
-            		stackSize--; // stack pop
+            	if (open > 0) {
+            		open--; // stack pop
 	            } else {
-	                notMatched++;
+	                close++;
 	            }
             }
         }
-        return stackSize + notMatched;    
+        return open + close;    
     }
 	
 	public int minAddToMakeValid1(String s) {

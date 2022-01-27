@@ -74,4 +74,74 @@ public class AllPathsFromSourceToTarget {
 			currList.remove(currList.size()-1);
 		}
 	}
+	
+	/**
+	 * public void printAllPaths(int s, int d)
+    {
+        boolean[] isVisited = new boolean[v];
+        ArrayList<Integer> pathList = new ArrayList<>();
+
+        // add source to path[]
+        pathList.add(s);
+
+        // Call recursive utility
+        printAllPathsUtil(s, d, isVisited, pathList);
+    }
+
+    // A recursive function to print
+    // all paths from 'u' to 'd'.
+    // isVisited[] keeps track of
+    // vertices in current path.
+    // localPathList<> stores actual
+    // vertices in the current path
+    private void printAllPathsUtil(Integer u, Integer d,
+                                   boolean[] isVisited,
+                                   List<Integer> localPathList)
+    {
+
+        if (u.equals(d)) {
+            System.out.println(localPathList);
+            // if match found then no need to traverse more till depth
+            return;
+        }
+
+        // Mark the current node
+        isVisited[u] = true;
+
+        // Recur for all the vertices
+        // adjacent to current vertex
+        for (Integer i : adjList[u]) {
+            if (!isVisited[i]) {
+                // store current node
+                // in path[]
+                localPathList.add(i);
+                printAllPathsUtil(i, d, isVisited, localPathList);
+
+                // remove current node
+                // in path[]
+                localPathList.remove(i);
+            }
+        }
+
+        // Mark the current node
+        isVisited[u] = false;
+    }
+	 */
+	
+	private void dfs(int[][] graph, int source, int target, boolean visited[],
+			List<Integer> curr, List<List<Integer>> answer) {
+		if (source == target) {
+			answer.add(new ArrayList<>(curr));
+			return;
+		}
+		visited[source] = true;
+
+		for (int child : graph[source]) {
+			if (!visited[source]) {
+				curr.add(child);
+				dfs(graph, child, target, visited, curr, answer);
+				curr.remove(curr.size() - 1);
+			}
+		}
+	}
 }

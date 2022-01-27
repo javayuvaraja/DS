@@ -33,6 +33,7 @@ public class FirstUniqueCharacter {
         return -1;
     }
 	
+	// One iteration
 	public int firstUniqChar1(String str) {
         if (str==null ) {
             return -1;
@@ -52,4 +53,26 @@ public class FirstUniqueCharacter {
         
         return indexMap.size()==0 ? -1 : indexMap.entrySet().iterator().next().getValue();
     }
+	
+	// two iteration
+	public int firstUniqueChar2(String s) {
+		// Create HashMap
+		LinkedHashMap<Character, Integer> hm = new LinkedHashMap<>();
+
+		// Iterate over string and store in HashMap
+		char[] ch = s.toCharArray();
+		for (int i = 0; i < s.length(); i++) {
+			if (!hm.containsKey(ch[i]))
+				hm.put(ch[i], i);
+			else
+				hm.put(ch[i], -1);
+		}
+
+		// Iterate over string to find first non repeated and check count in HashMap
+		for (Map.Entry<Character, Integer> m : hm.entrySet()) {
+			if (m.getValue() != -1)
+				return m.getValue();
+		}
+		return -1;
+	}
 }

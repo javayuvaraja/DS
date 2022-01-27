@@ -24,16 +24,14 @@ public class DesignOrderedStream {
 	
 	String []values;
     int currIndex;
-    public DesignOrderedStream(int n) {
+    public DesignOrderedStream(int n) { 
         values =  new String[n];
         currIndex = 0;
     }
     
     public List<String> insert(int idKey, String value) {
         List<String> result = new ArrayList<>();
-        
         values[idKey-1] = value;
-        
         while (currIndex < values.length &&
               values[currIndex]!=null) {
             result.add(values[currIndex]);

@@ -82,7 +82,6 @@ public class NumberOfOccurenceSortedArray {
 	    int idx = -1;
 	    while (lo <= hi) {
 	        int mid = (lo+hi)/2; // avoid overflow. same as (lo + hi) / 2
-
 	        if (target > arr[mid]) {
 	            lo = mid + 1;
 	        } else if (target < arr[mid]) {

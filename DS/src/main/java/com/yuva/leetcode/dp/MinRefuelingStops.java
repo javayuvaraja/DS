@@ -71,8 +71,12 @@ public class MinRefuelingStops {
                 pq.add(stations[station][1]);
                 station++;
             }
-            if (distCanCover >= target) return stops;
-            if (pq.isEmpty()) return -1;
+            if (distCanCover >= target) {
+            	return stops;
+            }
+            if (pq.isEmpty()) {
+            	return -1;
+            }
             distCanCover+=pq.poll();
             stops++;
         }
