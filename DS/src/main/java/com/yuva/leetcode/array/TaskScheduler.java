@@ -52,6 +52,6 @@ public class TaskScheduler {
     }
 
     public static void main(String[] args) {
-        scheduler(new int[]{1,2,1,2}, 3);
+        System.out.println(scheduler(new int[]{1,2,1,2}, 3));
     }
 }

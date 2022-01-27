@@ -68,6 +68,6 @@ public class ChangeMinCharacter {
             }
         }
         return res;
-    }
+    } 
 	
 }

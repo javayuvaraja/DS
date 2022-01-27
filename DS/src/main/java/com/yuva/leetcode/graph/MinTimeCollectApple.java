@@ -76,7 +76,7 @@ public class MinTimeCollectApple {
     }
     
     private int dfs(List<Integer>[] graph, int curr, List<Boolean> hasApple, boolean[] visited) {
-        int res = 0;
+    	int res = 0;
         for (int neighbor : graph[curr]) {
             if (visited[neighbor]) 
                 continue;

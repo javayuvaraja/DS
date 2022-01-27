@@ -15,7 +15,7 @@ public class IntegerToEnglish {
 		int i = 0;
 		String result = "";
 		while (number > 0) {
-			if (number%1000!=0) {
+			if (number%1000 != 0) {
 				result = getString(number%1000) + THOUSANDS[i] + " " + result;
 			}
 			i++;

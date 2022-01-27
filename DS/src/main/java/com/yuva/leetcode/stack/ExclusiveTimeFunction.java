@@ -48,7 +48,7 @@ So function 0 spends 2 + 4 + 1 + 1 = 8 units of total time executing.
  * @author Yuvaraja Kanagarajan
  *
  */
-public class ExclusiveTime {
+public class ExclusiveTimeFunction {
 
 	public int[]exclusiveTime(int n, List<String> logs) {
 		int result[]= new int[n];
@@ -87,7 +87,7 @@ public class ExclusiveTime {
 		logs.add("1:end:5");
 		logs.add("0:end:6");
 		
-		ExclusiveTime obj = new ExclusiveTime();
+		ExclusiveTimeFunction obj = new ExclusiveTimeFunction();
 		obj.exclusiveTime(2, logs);
 		
 	}

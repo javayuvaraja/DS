@@ -51,3 +51,48 @@ interface NestedInteger {
 	// Return empty list if this NestedInteger holds a single integer
 	public List<NestedInteger> getList();
 }
+
+
+
+/**
+public class NestedIterator implements Iterator<Integer> {
+
+private Queue<Integer> queue;;
+
+public NestedIterator(List<NestedInteger> nestedList) {
+        queue = new LinkedList();
+        dfs(nestedList);
+}
+
+private void dfs(List<NestedInteger> list){
+    if (list == null)
+        return;
+    
+    for (NestedInteger in: list){
+        if (in.isInteger())
+            queue.offer(in.getInteger());
+        else{
+            dfs(in.getList());
+        }
+        
+    }
+}
+
+@Override
+public Integer next() {
+    if (hasNext()){
+        return queue.poll();
+    }
+    else
+        return -1;
+}
+
+@Override
+public boolean hasNext() {
+    if (!queue.isEmpty())
+        return true;
+    else
+        return false;
+}
+}
+*/

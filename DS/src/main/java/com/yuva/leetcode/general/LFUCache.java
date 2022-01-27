@@ -102,6 +102,7 @@ public class LFUCache {
 			int evit = lists.get(min).iterator().next();  // remove the first entry from min freq
 			lists.get(min).remove(evit);
 			valueMap.remove(evit);
+			freqMap.remove(evit);
 		}
 		valueMap.put(key, value);
 		freqMap.put(key, 1);

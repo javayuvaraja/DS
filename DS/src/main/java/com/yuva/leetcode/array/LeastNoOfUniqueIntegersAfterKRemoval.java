@@ -1,7 +1,10 @@
 package com.yuva.leetcode.array;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
@@ -44,5 +47,27 @@ public class LeastNoOfUniqueIntegersAfterKRemoval {
 	            }
 	        }
 	        return remaining;        
+	    }
+	 
+	 public int findLeastNumOfUniqueIntsII(int[] arr, int k) {
+	        Map<Integer, Integer> numMap = new HashMap<>();
+	        
+	        for (int num : arr) {
+	            numMap.put(num, numMap.getOrDefault(num, 0) +1);
+	        }
+	        
+	        List<Integer> valueList = new ArrayList<Integer>(numMap.values());
+	        Collections.sort(valueList);
+	        int result = valueList.size();
+	        for (int value : valueList) {
+	            if (k >= value) {
+	                result --;
+	                k = k-value;
+	            } else {
+	                break;
+	            }                
+	        }
+	        return result;       
+	        
 	    }
 }
