@@ -12,4 +12,8 @@ public class Player {
 	public boolean isWhiteSide() {
 		return this.whiteSide == true;
 	}
+	
+	public Person getPerson() {
+		return this.person;
+	}
 }

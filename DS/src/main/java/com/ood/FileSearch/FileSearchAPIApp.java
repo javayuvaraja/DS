@@ -12,23 +12,23 @@ public class FileSearchAPIApp {
 		params.minSize = 2;
 		params.maxSize = 100;
 
-		File xmlFile = new File();
+		File1 xmlFile = new File1();
 		xmlFile.setContent("aaa.xml".getBytes());
 		xmlFile.name = "aaa.xml";
 
-		File txtFile = new File();
+		File1 txtFile = new File1();
 		txtFile.setContent("bbb.txt".getBytes());
 		txtFile.name = "bbb.txt";
 
-		File jsonFile = new File();
+		File1 jsonFile = new File1();
 		jsonFile.setContent("ccc.json".getBytes());
 		jsonFile.name = "ccc.json";
 
-		Directory dir1 = new Directory();
+		Directory1 dir1 = new Directory1();
 		dir1.addEntry(txtFile);
 		dir1.addEntry(xmlFile);
 
-		Directory dir0 = new Directory();
+		Directory1 dir0 = new Directory1();
 		dir0.addEntry(jsonFile);
 		dir0.addEntry(dir1);
 

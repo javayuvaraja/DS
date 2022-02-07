@@ -58,10 +58,12 @@ public class AsteroidCollision {
                 stack.push(cur);
             } else {
                 while (!stack.isEmpty() 
-                		&& stack.peek() > 0 && -cur > stack.peek()) { // previous positive force is less than the negative force so destroy the previous positive one(s) 
+                		&& stack.peek() > 0 && -cur > stack.peek()) { // previous positive force is less than the negative force so 
+                													 // destroy the previous positive one(s) 
                     stack.pop();
                 }
-                if (stack.isEmpty() || stack.peek() < 0) { // If peak is positive means positive force is higher than the negative force, so cant add the current negative.
+                if (stack.isEmpty() || stack.peek() < 0) { // If peak is positive means positive force is higher than the negative force, 
+                	                                       // so cant add the current negative.
                 										   // If stack empty or peek is negative then add the current negative force. 
                     stack.push(cur);
                 } else if (stack.peek() == -cur) { // If current negative force and previous positive force are equal then both will burst.

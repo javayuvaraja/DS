@@ -39,20 +39,21 @@ public class MaximumUnitsOfTruck {
 	public int maximumUnits(int[][] boxTypes, int truckSize) {
 		int[] arr = new int[1001];
 		for (int[] box : boxTypes) {
-			int value = box[1];
-			arr[value] += box[0];
+			int unitsCnt = box[1];
+			int boxCnt = box[0];
+			arr[unitsCnt] += boxCnt;
 		}
 
 		int sum = 0;
-		for (int i = 1000; i >= 0; i--) {
-			if (arr[i] == 0)
+		for (int units = 1000; units >= 0; units--) {
+			if (arr[units] == 0)
 				continue;
-			if (arr[i] > truckSize) {
-				sum += truckSize * i;
+			if (arr[units] > truckSize) {
+				sum += truckSize * units;
 				break;
 			}
-			truckSize -= arr[i];
-			sum += arr[i] * i;
+			truckSize -= arr[units];
+			sum += arr[units] * units;  // no.of.box * units
 		}
 
 		return sum;
@@ -60,16 +61,18 @@ public class MaximumUnitsOfTruck {
 	
 	public int maximumUnits1(int[][] boxTypes, int truckSize) {
         Arrays.sort(boxTypes, (a, b) -> b[1] - a[1]);
-        int boxes = 0;
+        int resultUnits = 0;
         for (int[] box : boxTypes) {
-            if (truckSize >= box[0]) {
-                boxes += box[0] * box[1];
-                truckSize -= box[0];
+            int boxCnt = box[0];
+            int unitsCnt = box[1];
+        	if (truckSize >= boxCnt) {
+                resultUnits += boxCnt * unitsCnt;
+                truckSize -= boxCnt;
             }else {
-                boxes += truckSize * box[1];
-                return boxes;
+                resultUnits += truckSize * unitsCnt;
+                return resultUnits;
             }
         }
-        return boxes;
+        return resultUnits;
     }
 }

@@ -4,7 +4,7 @@ package com.ood.FileSearch;
 public class MaxSizeFilter implements IFilter {
 
 	@Override
-	public boolean isValid(SearchParams params, File file) {
+	public boolean isValid(SearchParams params, File1 file) {
 		if (params.maxSize == null) {
 			return true;
 		}

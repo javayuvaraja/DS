@@ -13,15 +13,12 @@ public class Rook extends Piece {
 	    if(end.getPiece().isWhite() == this.isWhite()) {
 	      return false;
 	    }
-
-	    int x = Math.abs(start.getX() - end.getX());
-	    int y = Math.abs(start.getY() - end.getY());
-	    if(x + y == 1) {
-	      // check if this move will not result in king being attacked, if so return true
-	      return true;
-	    }
 	    
-	    return true;
+	    if (end.getX() == start.getX() ||
+	    		end.getY() == start.getY()) {
+	    	return true;
+	    }
+	    return false;
 
 	  }
 

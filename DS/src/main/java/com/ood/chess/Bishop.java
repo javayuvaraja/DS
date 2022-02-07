@@ -14,15 +14,7 @@ public class Bishop extends Piece {
 	      return false;
 	    }
 
-	    int x = Math.abs(start.getX() - end.getX());
-	    int y = Math.abs(start.getY() - end.getY());
-	    if(x + y == 1) {
-	      // check if this move will not result in king being attacked, if so return true
-	      return true;
-	    }
-	    
-	    return true;
-
+	    return Math.abs(end.getX()-start.getX()) == Math.abs(end.getY()-start.getY());
 	  }
 
 

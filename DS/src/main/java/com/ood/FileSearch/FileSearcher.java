@@ -8,20 +8,20 @@ import java.util.Queue;
 public class FileSearcher {
 	private FileFilter filter = new FileFilter();
 
-	public List<File> search(Directory dir, SearchParams params) {
-		List<File> files = new ArrayList<>();
+	public List<File1> search(Directory1 dir, SearchParams params) {
+		List<File1> files = new ArrayList<>();
 
-		Queue<Directory> queue = new LinkedList<>();
+		Queue<Directory1> queue = new LinkedList<>();
 		queue.add(dir);
 
 		while (!queue.isEmpty()) {
-			Directory folder = queue.poll();
+			Directory1 folder = queue.poll();
 
 			for (IEntry entry : folder.entries) {
 				if (entry.isDirectory()) {
-					queue.add((Directory) entry);
+					queue.add((Directory1) entry);
 				} else {
-					File file = (File) entry;
+					File1 file = (File1) entry;
 					if (filter.isValid(params, file)) {
 						files.add(file);
 					}

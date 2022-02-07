@@ -13,7 +13,7 @@ public class FileFilter {
 		filters.add(new ExtensionFilter());
 	}
 
-	public boolean isValid(SearchParams params, File file) {
+	public boolean isValid(SearchParams params, File1 file) {
 		for (IFilter filter : filters) {
 			if (!filter.isValid(params, file)) {
 				return false;

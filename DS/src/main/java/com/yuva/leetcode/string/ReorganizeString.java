@@ -15,29 +15,29 @@ public class ReorganizeString {
 
 	public String reorganizeString1(String str) {
         Map<Character, Integer> freqMap = new HashMap<>();
-        int max = 0;
-        char letter = 0;
+        int freqMax = 0;
+        char maxFreqLetter = 0;
         char chArr[]= str.toCharArray();
         for (char ch: chArr) {
         	freqMap.put(ch, freqMap.getOrDefault(ch, 0)+1);
-        	if (freqMap.get(ch) > max) {
-        		max = freqMap.get(ch);
-        		letter = ch;
+        	if (freqMap.get(ch) > freqMax) {
+        		freqMax = freqMap.get(ch);
+        		maxFreqLetter = ch;
         	}
         }
         
-        if (max > (str.length() + 1) / 2) {
+        if (freqMax > (str.length() + 1) / 2) {
             return ""; 
         }
         
         char[] res = new char[str.length()];
         int idx = 0;
-        while (max > 0) {
-            res[idx] = letter;
+        while (freqMax > 0) {
+            res[idx] = maxFreqLetter;
             idx += 2;
-            max--;
+            freqMax--;
         }
-        freqMap.remove(letter);
+        freqMap.remove(maxFreqLetter);
         for(char ch: freqMap.keySet()) {
         	int frequency = freqMap.get(ch);
         	while (frequency>0) {

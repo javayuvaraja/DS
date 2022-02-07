@@ -43,11 +43,11 @@ interface Node extends Visitable<Node> {
 }
 
 //Regular file
-class File implements Node {
+class File1 implements Node {
 	private final String name;
 	private byte[] data;
 
-	public File(String name, byte[] data) {
+	public File1(String name, byte[] data) {
 		this.name = name;
 		this.data = data;
 	}
@@ -74,15 +74,15 @@ class File implements Node {
 }
 
 //Directory in file system
-class Directory implements Node {
+class Directory1 implements Node {
 	private final String name;
 	private List<Node> contents = new ArrayList<>();
 
-	public Directory(String name) {
+	public Directory1(String name) {
 		this.name = name;
 	}
 
-	public Directory addNode(Node node) {
+	public Directory1 addNode(Node node) {
 		contents.add(node);
 		return this;
 	}
@@ -173,7 +173,7 @@ class TypePredicate implements SearchPredicate<Node> {
 
 //FileSearcher - accepts fs nodes and calls worker
 class FileSearchService implements Visitor<Node> {
-	public List<Node> search(Directory start, SearchPredicate<Node> params) {
+	public List<Node> search(Directory1 start, SearchPredicate<Node> params) {
 		List<Node> result = new ArrayList<>();
 
 		Worker<Node> worker = (Node n) -> {
@@ -189,13 +189,13 @@ class FileSearchService implements Visitor<Node> {
 
 public class FileSearchAPI {
 	public static void main(String[] args) {
-		Directory root = new Directory("/");
-		root.addNode(new Directory("bin"));
-		root.addNode(new Directory("etc"));
-		root.addNode(new Directory("sbin"));
-		root.addNode(new Directory("tmp"));
-		root.addNode(new Directory("user"));
-		root.addNode(new Directory("var").addNode(new Directory("log").addNode(new File("system.log", new byte[] {}))));
+		Directory1 root = new Directory1("/");
+		root.addNode(new Directory1("bin"));
+		root.addNode(new Directory1("etc"));
+		root.addNode(new Directory1("sbin"));
+		root.addNode(new Directory1("tmp"));
+		root.addNode(new Directory1("user"));
+		root.addNode(new Directory1("var").addNode(new Directory1("log").addNode(new File1("system.log", new byte[] {}))));
 
 		TypePredicate typePredicate = TypePredicate.create().setType(NodeType.File);
 		NamePredicate namePredicate = NamePredicate.create().setName("etc");

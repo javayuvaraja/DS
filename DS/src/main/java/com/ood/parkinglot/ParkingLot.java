@@ -22,6 +22,7 @@ public class ParkingLot {
                 ParkingSpot parkingSpot = floor.parkVehicle(vehicle);
                 // entrance panel has to refresh available total no.of.spots 
                 // if no full then display full in the entrance panel.
+                entrancePanel.showAvailability("");
                 return parkingSpot;
             }
         }
@@ -33,7 +34,8 @@ public class ParkingLot {
         for (ParkingFloor floor : parkingFloors) {
             if (floor.hasGivenParkingSpot(parkingSpot)) {
             	// entrance panel has to refresh available total no.of.spots
-                return floor.unParkVehicle(parkingSpot);
+            	entrancePanel.showAvailability("");
+            	return floor.unParkVehicle(parkingSpot);
             }
         }
 

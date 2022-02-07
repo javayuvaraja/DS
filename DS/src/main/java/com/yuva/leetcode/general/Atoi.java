@@ -48,10 +48,12 @@ public class Atoi {
         char[] charArr = str.toCharArray();
         boolean isNegative = str.indexOf("-")==0;
         boolean isPlusSign = str.indexOf("+")==0;
+        
         if ((isNegative||isPlusSign) && charArr.length==1){
             return 0;
         }
         int index = isNegative || isPlusSign ? 1 :0;
+        
         if(!isNegative && !charMap.containsKey(charArr[index])) {
             return 0;
         }
@@ -66,6 +68,7 @@ public class Atoi {
                 break;
             }
         }
+        
         int result =0;
         if (number > Integer.MAX_VALUE) {
             if (isNegative) {
