@@ -43,13 +43,10 @@ public class MinimumAddToMakeValidParenthesis {
         for (char c : S.toCharArray()) {
             if (c == '(') {
                 open++; // stack push 
-            }
-            else if (c == ')') {
-            	if (open > 0) {
-            		open--; // stack pop
-	            } else {
-	                close++;
-	            }
+            } else if (open > 0) {
+            	open --; // stack pop;
+            } else {
+            	close++;
             }
         }
         return open + close;    

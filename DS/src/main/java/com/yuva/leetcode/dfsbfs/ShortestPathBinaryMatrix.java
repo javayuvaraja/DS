@@ -24,15 +24,15 @@ public class ShortestPathBinaryMatrix {
 
 	public int shortestPathBinaryMatrix(int[][] grid) {
 
-		int m = grid.length;
-		int n = grid[0].length;
+		int rowLen = grid.length;
+		int colLen = grid[0].length;
 
 		// if beginning is 1 and destination is 1 then result is -1
-		if (grid[0][0] == 1 || grid[m - 1][n - 1] == 1) {
+		if (grid[0][0] == 1 || grid[rowLen - 1][colLen - 1] == 1) {
 			return -1;
 		}
 
-		boolean[][] visited = new boolean[m][n];
+		boolean[][] visited = new boolean[rowLen][colLen];
 		visited[0][0] = true;
 		Queue<int[]> queue = new LinkedList<>();
 		queue.add(new int[] { 0, 0 });
@@ -44,15 +44,15 @@ public class ShortestPathBinaryMatrix {
 				int[] pop = queue.remove();
 				
 				// Checking reached destinations
-				if (pop[0] == m - 1 && pop[1] == n - 1) {
+				if (pop[0] == rowLen - 1 && pop[1] == colLen - 1) {
 					return ans + 1;
 				}
 				
 				for (int k = 0; k < 8; k++) {
 					int nextX = dir[k][0] + pop[0];
 					int nextY = dir[k][1] + pop[1];
-					if (nextX >= 0 && nextX < m && 
-						nextY >= 0 && nextY < n && 
+					if (nextX >= 0 && nextX < rowLen && 
+						nextY >= 0 && nextY < colLen && 
 						!visited[nextX][nextY]  && 
 						grid[nextX][nextY] == 0) {
 						queue.add(new int[] { nextX, nextY });

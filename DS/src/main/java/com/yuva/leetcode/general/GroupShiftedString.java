@@ -30,14 +30,11 @@ public class GroupShiftedString {
 		Map<String, List<String>> table = new HashMap<>();
 		for (String s : strings) {
 			String key = getHashKey(s);
-			if (table.containsKey(key)) {
-				table.get(key).add(s);
-			} else {
-				List<String> l = new ArrayList<>();
-				l.add(s);
-				table.put(key, l);
-			}
+			List<String> list = table.getOrDefault(key, new ArrayList<>());
+			table.putIfAbsent(key, list);
+			list.add(s);
 		}
+		
 		List<List<String>> result = new ArrayList<>();
 		for (Map.Entry<String, List<String>> e : table.entrySet()) {
 			List<String> l = (List<String>) e.getValue();
@@ -48,14 +45,14 @@ public class GroupShiftedString {
 	}
 
 	private String getHashKey(String s) {
-		if (s.length() == 0)
-			return "0";
-		StringBuilder sb = new StringBuilder();
-		for (int i = 1; i < s.length(); i++) {
-			int diff = ((s.charAt(i) - s.charAt(i - 1)) + 26) % 26;
-			sb.append(diff);
-		}
-		return sb.toString();
+	    char[] chars = s.toCharArray();
+	    String key = "";
+	    for(int i = 1; i < chars.length; i++) {
+	        int diff = chars[i] - chars[i-1];
+	        key += diff < 0 ? diff + 26 : diff;
+	        key += ",";
+	    }
+	    return key;
 	}
 	
 	public static void main(String[] args) {

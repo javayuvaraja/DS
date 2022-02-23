@@ -49,41 +49,41 @@ public class ShortestDistanceFromAllBuildings {
 	 * */
 	final int[][] dir = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 	public int shortestDistance(int[][] grid) {
-	    int n = grid.length;
-	    int m = grid[0].length;
-	    int[][] dp = new int[n][m];
-	    int[][] reach = new int[n][m];
+	    int m = grid.length;
+	    int n = grid[0].length;
+	    int[][] distance = new int[m][n];
+	    int[][] reach = new int[m][n];
 	    int countBuilding = 0;
-	    Queue<int[]> queue = new LinkedList<>();
 
-	    // step 1
-	    for (int i = 0; i < n; i++) {
-	        for (int j = 0; j < m; j++) {
+	    for (int i = 0; i < m; i++) {
+	        for (int j = 0; j < n; j++) {
 	            if (grid[i][j] == 1) {
-	                queue.offer(new int[]{i, j});
-	                bfs(queue, grid, dp, reach, n, m);
+	                bfs(grid, distance, reach, i, j);
 	                countBuilding++;
 	            }
 	        }
 	    }
 
-	    // step 2
 	    int result = Integer.MAX_VALUE;
-	    for (int i = 0; i < n; i++) {
-	        for (int j = 0; j < m; j++) {
-	            // WARNING: DO NOT FORGET to check whether current point is 0 and 
-	        	//whether current point can reach all buildings
+	    for (int i = 0; i < m; i++) {
+	        for (int j = 0; j < n; j++) {
+	            // check whether current point is 0 and 
+	        	//check whether current point can reach all buildings
 	            if (grid[i][j] == 0 && reach[i][j] == countBuilding) {
-	                result = Math.min(result, dp[i][j]);
+	                result = Math.min(result, distance[i][j]);
 	            }
 	        }
 	    }
 	    return result == Integer.MAX_VALUE ? -1 : result;
 	}
 
-	public void bfs(Queue<int[]> queue, int[][] grid, int[][] dp, int[][] reach, int n, int m) {
+	public void bfs(int[][] grid, int[][] distance, int[][] reach, int row, int col) {
 	    int level = 1;
-	    boolean[][] visited = new boolean[n][m];
+	    Queue<int[]> queue = new LinkedList<>();
+	    queue.offer(new int[] {row, col});
+	    int m = grid.length;
+	    int n = grid[0].length;
+	    boolean[][] visited = new boolean[m][n];
 	    while (!queue.isEmpty()) {
 	        int size = queue.size();
 	        for (int i = 0; i < size; i++) {
@@ -93,15 +93,15 @@ public class ShortestDistanceFromAllBuildings {
 	            for (int j = 0; j < 4; j++) {
 	                int newRow = currRow + dir[j][0];
 	                int newCol = currCol + dir[j][1];
-	                if (newRow < 0 || newRow > n - 1 || 
-	                		newCol < 0 || newCol > m - 1 || 
+	                if (newRow < 0 || newRow >= m || 
+	                		newCol < 0 || newCol >= n || 
 	                		grid[newRow][newCol] != 0 ||  // house or obstacle
 	                		visited[newRow][newCol]) {
 	                    continue;
 	                }
 	                queue.offer(new int[]{newRow, newCol});
 	                visited[newRow][newCol] = true;
-	                dp[newRow][newCol] += level;
+	                distance[newRow][newCol] += level;
 	                reach[newRow][newCol]++;
 	            }
 	        }
@@ -112,6 +112,6 @@ public class ShortestDistanceFromAllBuildings {
 	public static void main(String[] args) {
 		int buildings[][] = {{1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,0}};
 		ShortestDistanceFromAllBuildings obj = new ShortestDistanceFromAllBuildings();
-		obj.shortestDistance(buildings);
+		System.out.println(obj.shortestDistance(buildings));
 	}
 }

@@ -51,4 +51,24 @@ public class RightViewTree {
 		populateRightView(node.right, result, currLevel+1);
 		populateRightView(node.left, result, currLevel+1);
 	}
+	
+	
+	int maxLevel=0;
+	void rightViewUtil(TreeNode node, int level)
+    {
+        // Base Case
+        if (node == null)
+            return;
+ 
+        // If this is the first node of its level
+        if (maxLevel < level) {
+            System.out.print(" " + node.val);
+            maxLevel = level;
+        }
+ 
+        // Recur for left and right subtrees
+        rightViewUtil(node.right, level + 1);
+        rightViewUtil(node.left, level + 1);
+
+    }
 }

@@ -49,7 +49,7 @@ public class StoneGameIII {
 	
 	
 	public static void main(String[] args) {
-		int stones[] = {1,2,3,7};
+		int stones[] = {1,2,3,-8};
 		stoneGameIII(stones);
 	}
 }

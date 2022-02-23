@@ -34,10 +34,10 @@ public class JumpGameII {
         Arrays.fill (result, Integer.MAX_VALUE);
         result[0] = 0;
         
-        for (int j=1; j < nums.length; j++) {
-            for (int i=0 ; i < j ; i++) {
-                if ( i+nums[i] >= j) {
-                    result[j] = Math.min (result[j], result[i]+1);
+        for (int i=1; i < nums.length; i++) {
+            for (int j=0 ; j < i ; j++) {
+                if ( j+nums[j] >= i) {
+                    result[i] = Math.min (result[i], result[j]+1);
                     break;
                 }
             }

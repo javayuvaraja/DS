@@ -47,16 +47,19 @@ class LRUCache {
     }
     
     public void put(int key, int value) {
-        if (cacheMap.containsKey(key)) {
+    	DLLNode node = null;
+    	if (cacheMap.containsKey(key)) {
+    		node = cacheMap.get(key);
         	removeNode(cacheMap.get(key));
         	cacheMap.remove(key);
+        } else {
+        	node = new DLLNode(key, value);
         }
         if (cacheMap.size()== capacity) {
         	DLLNode lastNode = tail.prev;
         	removeNode(tail.prev);
         	cacheMap.remove(lastNode.key);
         }
-        DLLNode node = new DLLNode(key, value);
         insertNode(node);
     }
     

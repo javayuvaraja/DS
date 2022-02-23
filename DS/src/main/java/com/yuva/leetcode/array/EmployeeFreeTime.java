@@ -43,15 +43,15 @@ public class EmployeeFreeTime {
 		}
 		// sorting by start time
 		Collections.sort(intervalList, (a,b)->(a.start-b.start));
-		Interval prev = intervalList.get(0);
-		for (int i=0; i < intervalList.size(); i++) {
-			Interval curr = intervalList.get(0);
+		int prevEnd = intervalList.get(0).end;
+		for (int i=1; i < intervalList.size(); i++) {
+			Interval curr = intervalList.get(i);
 			// curr start is greater than prev end means, inbetween interval is free time.
-			if (curr.start > prev.end) {
-				result.add(new Interval (prev.end, curr.start));
-				prev = curr;
+			if (curr.start > prevEnd) {
+				result.add(new Interval (prevEnd, curr.start));
+				prevEnd = curr.end;
 			} else {
-				prev = prev.end > curr.end ? prev : curr;
+				prevEnd = Math.max(prevEnd, curr.end);
 			}
 		}
 		return result;
