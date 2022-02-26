@@ -1,5 +1,10 @@
 package com.yuva.leetcode.stack;
 
+/**
+ * Two stack implementation
+ * @author Yuvaraja Kanagarajan
+ *
+ */
 public class TwoStacks {
 	int size;
 	int top1, top2;
